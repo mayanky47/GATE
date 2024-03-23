@@ -1,0 +1,149 @@
+Boolean Algebra and Logic Gates
+
+Basic Definition
+	
+	. Boolean Algebra may be defined with a set of elements, a set of operators, and a number of unproved axioms and postulates.
+	. A set of Elements is any collection of objects having common property.
+		. if S is a set, and x and y are certain objects, then x ∈ S denotes that x is a member of the set S, and y ∉ S denots that y is not an element of S.
+	. A set with a denumerable number of elements is specified by braces: A = 	{1, 2, 3, 4} , i.e. , the elements of set A are numbers 1, 2, 3 and 4.
+	.A binary operator defined on a set S of elements is a rule that assigns to each pair of elements from S a unique element from S.
+
+	. Example - consider the relation a * b = c. We say that * is a binary operator if it specifies a rule for finding c from the pair (a,b) and also if a,b,c ∈ S. However, * is not a binary operator if a,b ∈ S, whereas the rule finds c ∉ S.
+
+	. The postulates of a mathematical system form the basic assumptions from which it is possible to deduce the rules, theorems, and properties of the system. 
+
+	. The most common postulates used to formulate various algebraic structures are: 
+		1. Closure. - A set S is closed with respect to a binary operator if, for every pair of elements of S, the binary operator specifies a rule for obtaining a unique element of S.
+			.Example - the set of natural numbers N = {1, 2, 3, 4,...} is closed with respect to the binary operator (+) by the rules of arithmetic addition, since for any a, b ∈ N we obtain a unique c ∈ N by the operatation a + b = c.
+					  The set of natural numbers is not closed with respect to the binary operator minus (-) by the rules of arithmetic subtraction because 2 - 3 = -1 and 2, 3 ∈ N, while (-1) ∉ N.
+
+		2. Associative law. - A binary operator * on a set S is said to be associative whenever 
+							  (x * y) * z = x * (y * z)  for all x,y,z ∈ S.
+
+		3. Commutative law. - A binary operator * on a set S is said to be commutative whenever 
+							  x * y = y * x for all x, y ∈ S.
+
+		4. Identity element. - A set S is said to have an identity element with respect to a binary operation * on S if there exists an element e ∈ S with the property 
+							   e * x = x * e = x for every x ∈ S
+			Example - The element 0 is an identity element with respect to operator + on the set of integers I = {.. -3, -2,-1,0,1,2,3,...} since 
+					  x + 0 = 0 + x = x for any x ∈ I
+
+					  The set of natural numbers N has no identity element since 0 is excluded from the set.
+		5. Inverse - A set S having the identity element e with respect to a binary operator * is said to have an inverse whenever, for every x ∈ S, there exists an element y ∈ S such that
+					x * y = e
+
+			Example - In the set of integers I with e = 0, the inverse of an element a is (-a) since a + (-a) = 0.
+		6. Distributive law - If * and . are two binary operators on a set S, * is said to be distributive over . whenever 
+							x * (y . z) = (x * y).(x * z)
+			Example - An example of an algebraic structure is a field.	A field is a set of elements, together with two binary operators, each having properties 1 to 5 and both operators combined to give property 6. The set of real numbers together with the binary operators + and . form the field of real numbers. The field of real numbers is the basis for arithmetic and ordinary algebra. The Operators and postulates have the following meanings:
+				The binary operator + defines addition.
+				The additive identity is 0.
+				The additive inverse defines subtraction.
+				The binary operator . defines multiplication.
+				The multiplicative identity is 1.
+				The multiplicative inverse of a = 1/a defines devision, i.e., a.1/a = 1.
+				The only distibutive law application is that of . over +:
+					a.(a+c) = (a.b)+ (a.c)
+
+AXIOMATIC DEFINITION OF BOOLEAN ALGEBRA
+
+	In 1854 George Boole introduced a systematic treatment of logic and for this purpose an algebraic system called Boolean algebra. In 1938 C.E. Shannon introduced a two-valued Boolean algebra called switching algebra, in which he demonstrated that the properties of bistable electrical switching circuits can be represented by this algebra. For the formal definition of Boolean algebra, we shall employ the postulates formulated by E.V. Huntington in 1904.
+
+	Boolean algebra is an algebraic structure defined on a set of elements B together with two binary operators + and . provided the following(Huntington) postulates are satisfied:
+		1.	(a) Closure with respect to the operator (+).
+			(b) Closure with respect to the operator (.).
+		2.	(a) An identity element with respect to +, designated by 0: x + 0 = 0 + x = x.
+			(b) An identity element with respect to ., designated by 1:		x.1 = 1.x= x.
+		3.	(a) Commutative with respect to +: x+y = y+x.
+			(b) Commutative with respect to .: x.y = y.x.
+		4.	(a) . is distributive over +: x.(y+z) = (x.y)+(x.z).
+			(b) + is distributive over .: x+(y.z) = (x+y).(x+z).
+		5.	For every element x ∈ B, there exist an element x' ∈ B(called the complement of x) such that (a) x + x' = 1 and (b) x.x' = 0.
+		6.	There exists at least two elements x, y ∈ B such that x≠y.
+
+	Comparing Boolean algebra with arithmetic and ordinary algebra(the field of real numbers), we note the following differences:
+		1.	Huntington postulates do not include the associative law. However, this law holds for Boolean algebra and can be derived (for both operators) from the other postulates.
+		2.	 The distributive law of + over ., i.e., x+ (y.z) = (x+y).(y+z), is valid for Boolean algebra, but not for ordinary algebra.
+		3.	Boolean algebra does not have additive or multiplicative inverses;therefore, there are no subtraction or division operations.
+		4.	Postulate 5 defines an operator called complement that is not available in ordinary algebra.
+		5.	Ordinary algebra deals with real numbers, which consitute an infinite set of elements. Boolean algebra deals with as yet undefined set of elements B, but in the two-valued Boolean algebra defined below(and of interest in our subquent use of this algebra), B is defined as a set with only two elements, 0 and 1.
+
+	Two-Valued Boolean Algebra
+
+		A two-valued Boolean algebra is defined on a set of two elements, B= {0,1}, with rules for the two binary operators + and . as shown in the following operator tables.
+
+		  | x y | x.y | | x y | x+y | |	x | x'|
+		  | --------- | | --------- | |------ |
+		  | 0 0 |  0  | | 0 0 |  0  | | 0 | 1 |
+		  | 0 1 |  0  | | 0 1 |  1  | |	1 | 0 |
+		  |	1 0 |  0  | | 1 0 |  1  | |-------|
+		  |	1 1 |  1  | | 1 1 |  1  |
+		  |-----------| |-----------|
+
+		These rules are exactly the same as the AND, OR and NOT operations, respectively.
+		We must now show that the Huntington postulates are valid for the set B = {0, 1} and the two binary operators defined before.
+			1. Closure is obvious from the tables since the result of each operation is either 1 or 0 and 1, 0 ∈ B.
+			2. From the tables we see that 
+				(a) 0 + 0 = 0 , 0 + 1 = 1
+				(b) 1.1 = 1   , 1.0 = 0
+				which establishes the two identity elements 0 for + and 1 for . as defined by postulate 2.
+			3. The commutative laws are obvious from the symmetry of binary operator tables.
+			4. (a) The distributive law x.(y + z) = (x.y) + (x.z) can be shown to hold true from the operator tables by forming a truth table of all possible values of x, y and z. For each combination, we derive x.(y+z) and show that the value is the same as (x.y) + (x.z).
+
+		| x y z | | y+z | | x.(y+z) | | x.y | | x.z | |(x.y)+(x.z)|
+		| 0 0 0 | |  0  | |    0    | |  0  | |  0  | |     0     |
+		| 0 0 1 | |  1  | |    0    | |  0  | |  0  | |     0     |
+		| 0 1 0 | |  1  | |    0    | |  0  | |  0  | |     0     |
+		| 0 1 1 | |  1  | |    0    | |  0  | |  0  | |     0     |
+		| 1 0 0 | |  0  | |    0    | |  0  | |  0  | |     0     |
+		| 1 0 1 | |  1  | |    1    | |  0  | |  1  | |     1     |
+		| 1 1 0 | |  1  | |    1    | |  1  | |  0  | |     1     |
+		| 1 1 1 | |  1  | |    1    | |  1  | |  1  | |     1     |
+
+				(b) the distributive law of + over . can be shown to hold true by means of a truth table similar to the one above.
+			5. From the complement table it is easily shown that
+				(a) x + x' = 1, since 0 + 0' = 0 + 1 = 1 and 1 + 1' = 1 + 0 = 1.
+				(b) x.x' = 0, since 0.0' = 0.1 =0 and 1.1' =1.0 = 0, which verifies postulate 5.
+			6. Postulate 6 is satisfied because the two-valued Boolean algebra has two distinct elements, 1 and 0, with 1 ≠ 0.
+
+	BASIC THEOREMS AND PROPERTIES OF BOOLEAN ALGEBRA
+
+		Duality
+			The Huntington postulates have been listed in pairs and designated by part (a) and part (b). One part may be obtained from the other if the binary operators and the identity elements are interchanged. This important property of Boolean algebra is called the duality principal. It states that every algebraic expression deducible from the postulates of Boolean algebra remains valid if the operators and identity elements are interchanged. In a two-valued Boolean algebra, the identity elements and the elements of the set B are the same: 1 and 0.
+			The duality principal has many applications. If the dual of an algebraic expression is desired, we simply interchange OR and AND operators and replace 1's by 0's and 0's by 1's.
+
+		Basic Theorems
+			The theorems and postulates listed are the most basic relationships in Boolean algebra. The theorems, like the postulates, are listed in pairs; each relation is the dual of the one paired with it. The postulates are basic axioms of the algebraic structure and need no proof. The theorems must be proven from the postulates. The proofs of the theorems with one variable are presented below. At the right is listed the number of the postulate that justifies each step of the proof.
+
+			| Postulate 2 | (a) x + 0 =x    (b) x . 1 = x
+			| Postulate 5 | (a) x + x' = 1  (b) x . x'= 0
+			| Theorem  1  | (a) x + x = x   (b) x . x = x
+			| Theorem 2   | (a) x + 1 = 1   (b) x . 0 = 0
+			| Theorem 3 , involution     (x')' = x
+			| Postulate 3, commulative (a) x + y = y + x (b) x.y = y.x
+			| Theorem 4, associative (a) x +(y+z) = (x+y)+z (b) x(yz) = (xy)z
+			| Postulate 4, distributive (a) x.(y+z) = (x.y)+(x.z) (b) x+(yz) = (x+y).(y+z)
+			| Theorem 5, Demorgan  (a) (x+y)'= x'.y' (b) (xy)'=x'+y'
+			| Theorem 6, absorption (a) x + xy = x  (b) x(x+y) = x
+
+
+		Theorem 1(a): x + x = x
+					  x + x = (x + x).1  		by postulate 2(b)
+					  		= (x + x)(x + x')   			 5(a)
+					  		= x + xx'						 4(b)
+					  		= x + 0  						 5(b)
+					  		= x 							 2(a)
+
+		Theorem 1(b): x.x = x
+					  x.x = x.x + 0 		by postulate 2(a)
+					  	  = x.x + xx'					 5(b)
+					  	  = x.(x+x')           			 4(a)
+					  	  = x.1 						 5(a)
+					  	  = x  							 2(b)
+
+		Theorem 2(a): x + 1 = 1
+					  x + 1 = 1.(x + 1) 	by prostulate 2(b)
+					  		= (x + x')(x + 1)    	 	  5(a)
+					  		= x + (x'. 1)    			  4(b)
+					  		= x + x'					  2(b)
+					  		= 1  						  5(a)
