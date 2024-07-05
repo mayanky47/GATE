@@ -1,0 +1,67 @@
+-----------------------------------
+Consider the following 2 Tables
+
+A
+Num	Square
+2	4
+3	9
+4	16
+
+B
+Num	Cube
+2	8
+3	18
+5	75
+----------------------------------
+
+**************************
+Left Outer Join (A ⟕ B)
+**************************
+------------------------------------------------------------------------------------------
+
+Operation allows keeping all tuple in the left relation.
+
+However, if there is no matching tuple is found in right relation, 
+	then the attributes of right relation in the join result are filled with null values.
+
+
+A ⟕ B
+Num	Square	Cube
+2	 4		8
+3	 9		18
+4	 16		–
+
+------------------------------------------------------------------------------------------
+*************************
+Right Outer Join (A ⟖ B)
+*************************
+----------------------------------------------------------------------------------------------
+
+operation allows keeping all tuple in the right relation.
+
+However, if there is no matching tuple is found in the left relation,
+	then the attributes of the left relation in the join result are filled with null values.
+
+A ⟖ B
+Num	Cube	Square
+2	 8		  4
+3	 18		  9
+5	 75		  –
+
+-----------------------------------------------------------------------------------------------
+*************************
+Full Outer Join (A ⟗ B)
+*************************
+-----------------------------------------------------------------
+
+All tuples from both relations are included in the result, 
+	irrespective of the matching condition.
+
+A ⟗ B
+Num	Cube	Square
+2	 4		  8
+3	 9		  18
+4	 16		  –
+5	 –		 75
+
+-----------------------------------------------------------------

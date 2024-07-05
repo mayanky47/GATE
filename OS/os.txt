@@ -1,0 +1,487 @@
+Bootloader
+	
+	All operating systems have to be loaded
+		This task is completed by a bootloader
+
+	Drives are split into lots of sections, all 512 bytes long.
+		These are called sectors
+
+	The First sector is what computer looks for when it boots.
+		It is called the bootsector
+
+	A bootloader is a small raw binary program that sits in the bootsector of a disk.
+
+	When a computer boots, it checks for a bootloader in the bootsector of the disk.
+
+	If a bootloader is present, the computer will execute it.
+
+	A bootloader isn't very complicated, all it has to do is load the kernel into the RAM so the computer can run it.
+
+Kernel
+	
+	This is the main executable of the operating system.
+
+CPU Modes
+
+	The CPU can run in several different modes.
+		These modes decide how the operating system can access memory and resources.
+
+	First of these modes is "Real Mode". If the kernel is running in real mode. it has almost unlimited access to the RAM up to 1 megabytes.
+		When the CPU starts it does so in real mode.
+	Second is "Protected Mode", here access memory is limited, so it can't be altered by other program.
+		Running in protected mode will make the OS more stable.
+
+		In protected mode, you can access up to 4 GB of RAM
+
+		The bootloader is the section of code that sets this mode.
+
+Interrupts
+	
+	There are 2 different types of interrupts.
+
+	1. Software Interrupt:
+	2. Hardware interrupt:
+
+	Interrupts are a great way of communicating with the computer's hardware, but they can only be used in real mode.
+	If you try to call an interrupt in protected mode, you will crash your OS.
+		There are some ways to get around this problem
+
+
+
+
+
+
+Process
+	
+	A process is a program in execution.
+	The status of the current activity of a process is represented by the value of the program counter and the contents of the processor's registers.
+
+	The memory layout of a process is typically divided into multiple sections
+		Text section - the executable code
+		Data section - global variables
+		Heap section - memory that is dynamically allocated during program run time
+		Stack section - temporary data storage when invoking functions (such as function parameters, return addresses, and local variables)
+
+	Notice that the sizes of the text and data sections are fixed, as their sizes do not change during program run time.
+	However, the stack an heap sections can shrink and grow dynamically during program execution.
+
+	Each time an function is called, an activation record containing function parameters, local variables, and the return address is pushed onto the stack
+
+	when control is returned from the function, the activation recored is popped from the stack.
+
+	Similarly, the heap will grow as memory is dynamically allocated, and will shrink when memory is returned to the system.
+
+	Although the stack and heap sections grow toward one another, the operating system must ensure they do not overlap one another.
+
+	We emphasize that a program by itself is not a process.
+	
+	A program is a passive entity, such as a file containing a list of istructions stored on disk (often called an executable file).
+
+	A process is an active entity, with a program counter specifying the next instruction to execute and a set of associated resources.
+
+	A program becomes a process when an executable file is loaded into memory.
+
+	Although two processes may be associated with the same program, they are envertheless considered two seperate execution sequences.
+		For instance, several users may be running different copies of the mail program, or the same user may invoke many copies of the web brower program.
+		Each of these is a separate process;
+		although the text sections are equivalent, the data, heap, and stack sections vary.
+
+	It is also common to have a process that spawns many processes as it runs.
+
+	Note that a process can itself be an execution environment for other code.
+		The Java programming environment provides a good example.
+		In most circmstances, an executable java program is executed within the java virtual machine (JVM).
+		The JVM executes as a process that interprets that interprets the loaded java code and takes actions (via native machine instructions) on behalf of that code.
+			For example, to run the compiled java program Program.class, we would enter
+				java program
+			The command java runs the JVM as an ordinary process, which in turns executes the java program Program in the virtual machine.
+
+			The concept is the same as simulation, execpt that the code, instead of being written for a different instruction set, is written in the Java language.
+
+Process State
+
+	As a process executes, it changes state.
+
+	The state of a process is defined in part by the current activity of that process.
+
+	A process may be in one of the following states:
+		New - The process is being created.
+		Running - Instructions are being executed.
+		Waiting - The process is waiting for some event to occur (such as an I/O completion or reception of a signal).
+		Ready - The process is waiting to be assigned to a processor.
+		Terminated - The process has finished execution
+
+	It is important to realize that only one process can be running on any processor core at any instant. 
+	Many processes may be ready and waiting, however.
+
+Process Control Block
+
+	Each process is represented in the operating system by a process control block (PCB) - also called a task control block.
+
+	It contains many pieces of information associated with a specific process, including these:
+
+		Process state - The state may be new, ready, running, waiting, halted, and so on.
+
+		Program counter - The counter indicates the address of the next instruction to be executed for this process.
+
+		CPU registers - The registers vary in number and type, depending on the computer architecture. They include accumulators, index registers, stack pointers, and general-purpose registers, plus any condition-code information.
+			Along with the program counter, this state information must be saved when an interrupt occurs, to allow the process to be continued correctly afterward when it is rescheduled to run.
+
+		CPU-scheduling information - This information includes a process priority, pointers to scheduling queues, and any other scheduling parameters.
+
+		Memory-management information - This information may include such items as the value of the base and limit registers and the page tables, or the segment tables, depending on the memory system used by the operating system.
+
+		Accounting information - This information includes the amount of CPU and real time used, time limits, account numbers job or process numbers, and so on.
+
+		I/O status information - This information includes the list of I/O devices allocated to the process, a list of open files, and so on.
+
+	In brief, the PCB simply serves as the repository for all the data needed to start, or restart, a process, along with some accounting data.
+
+Threads
+
+	The process model discussed so far has implied that a process is a program that performs a single thread of execution.
+		For example, when a process is running a word-processor program, a single thread of instructions is being executed.
+		This single thread of control allows the process to perform only one task at a time. Thus, the user cannot simulaneously type in characters and run the spell checker.
+	
+	Most modern operating systems have extended the process concept to allow a process to have multiple threads of execution and thus to perform more than one task at a time.
+		This feature is especially beneficial on multicore systems, where multiple threads can run in parallel.
+		A multithreaded word processor could, for example, assign one thread to manage user input while another thread runs the spell checker.
+		On systems that support threads, the PCB is expanded to include information for each thread.
+		Other changes throughout the system are also needed to support threads.
+
+Process Scheduling
+	
+	The objective of multiprogramming is to have some process running at all times so as to maximize CPU utilization.
+	The objective of time sharing is to switch a CPU core among processes so frequently that users can interact with each program while it is running.
+	To meet these objectives, the process scheduler selects an available process (possibly from a set of several available processes) for program execution on a core.
+	Each CPU core can run one process at a time.
+
+	For a system with a single CPU core, there will never be more than one process running at a time, whereas a multicore system can run multiple processes at one time.
+	If there are more processes than cores, excess processes will have to wait until a core is free and can be rescheduled.
+
+	The number of processes currently in memory is known as the degree of multiprogramming.
+
+	Balancing the objectives of multiprogramming and time sharing also requires taking the general behavior of a process into account.
+
+	In general, most processes can be described as either I/O bound or CPU bound. 
+		An I/O-bound process is one that spends more of its time doing I/O than it spends doing computations.
+
+		A CPU-bound process, in contrast, generates I/O requests infrequently, using more of its time doing cmputations.
+
+	Scheduling Queues
+
+	As processes enter the system, they are put into a ready queue, where they are ready and waiting to execute on a CPU's core This queue is generally stored as a linked list;
+
+	A ready-queue header contains pointers to the first PCB in the list, and each PCB includes a pointer field that points to the next PCB in the ready queue.
+
+	The system also includes other queues. When a process is allocated a CPU core, it executes for a while and eventually terminates, is interrupted, or waits for the occurrence of a particular event, such as the completion of an I/O request.
+
+	Suppose the process makes an I/O request to a device such as a disk.
+	Since devices run significantly slower than processors, the process will have to wait for the I/O to become avaible.
+
+	Processes that waiting for a certain event to occur - such as completion of I/O - are placed in wait queue.
+
+	A common representation of process scheduling is a queueing diagram.
+
+	Two types of queues are present:
+		The ready queue and a set of wait queues.
+
+	A new process is initially put in the ready queue.
+	It waits there until it is selected for execution, or dispatched.
+
+	Once the process is allocated a CPU core and is executing, one of the several events could occur:
+		The process could issue an I/O request and then be placed in an I/O wait queue.
+		The process could create a new child process and then be placed in a wait queue while it awaits the child's termination.
+		The process could be removed forcibly from the core, as a result of an interrupt or having its time slice expire, and be put back in the ready queue.
+
+	In the first two cases, the process eventually switches from the waiting state to the ready state and is then put back in the ready queue.
+	A process continues this cycle until it terminates, at which time it is removed from all queues and has its PCB and resources deallocated.
+
+CPU Scheduling
+
+	A process migrates among the ready queue and various wait queues throughout its lifetime.
+
+	The role of the CPU scheduler is to select from among the processes that are in the ready queue and allocate  a CPU core to one of them.
+	
+	The CPU scheduler must select a new process for the CPU frequently.
+
+	An I/O-bount process may execute for only a few milliseconds before waiting for an I/O request.
+
+	Although a CPU-bound process will require a CPU core for longer durations, the scheduler is unlikely to grant the core to a process for an extended period.
+
+	Instead, it is likely designed to forcibly remove the CPU from a process and schedule another process to run.
+	Therefore, the CPU scheduler executes at least once every 100 milliseconds,
+	although typically much more frequently.
+
+
+	Some OS have an intermediate form of scheduling, know as swapping, whose key idea is that sometimes it can be advantageous to remove a process from memory ( and from active contention for the CPU) and thus reduce the degree of multiprogramming.
+	Later, the process can be reintroduced into memory, and its execution can be continued where it left off.
+	This scheme is known as swapping because a process can be "Swapped out" from memory to disk, where its current status is saved, and later "swapped in" from disk back to memory, where its status is restored.
+
+	Swapping is typically only necessary when memory has been overcommitted and must be freed up.
+
+Context Switch
+
+	Interrupts cause the operating system to change a CPU core from its current task and to run a kernel routine. Such operations happen frequently on general-purpose systems.
+	When an interrupt occurs, the system needs to save the current context of the process running on the CPU core so that it can restore that context when its processing is done, essentially suspending the process and then resuming it.
+	The context is represented in the PCB of the process.
+	It includes the value of the CPU registers, the process state, and memory-management information.
+
+	Generically, we perform a state save of the current state of the CPU core, be it in kernel or user mode, and then a state restore to resume operations.
+
+	Switching the CPU core to another process requires performing a state save of the current process and a state restore of a different process.
+	This task is known as a context switch.
+
+	When a context switch occurs, the kernel saves the context of the old process in its PCB and loads the saved context of the new process scheduled to run. 
+
+	Context-switch time is pure overhead, because the system does no useful work while switching.
+
+Operations on Processes
+
+	The processes in most systems can execute concurrently, and they may be created and deleted dynamically. 
+	Thus, these systems must provide a mechanism for process creation and termination.
+
+	Process Creation
+
+	During the course of execution, a process may create several new processes.
+
+	The creating process is called a parent process, and the new processes are called the children of that process.
+
+	Each of these new processes may in turn create other processes, forming a tree of processes.
+
+	Most operating systems (includeing UNIX, Linux, and Windows) identify processes according to a unique process identifier (pid), which is typically an integer number. 
+	The pid provides a unique value for each process in the system, and it can be used as an index to access various attributes of a process within the kernel.
+
+	In general, when a process creates a child process, that child process will need certain resources (CPU time, memory, files, I/O devices) to accomplish its task.
+	A child process may be able to obtain its resources directly from the operating system, or it may be constrained to a subset of the resources of the parent process.
+	
+	The parent may have to partition its resources among its children, or it may be able to share some resources (such as memory or files) among several of its children.
+	Restricting a child process to a subset of the parent's resources prevents any process from overloading the system by creating too many child processes.
+
+	In addition to supplying various physical and logical resources, the parent process may pass along initialization data (input) to the child process.
+		For example, consider a process whose function is to display the contents of  file - say, hw1.c - on the screen of a terminal. When the process is created, it will get, as an input from its parent processs, the name of the file hw1.c. 
+		Using that file name, it will open the file and write the contents out.
+		It may also get the name of the output device.
+	Alternatively, some operating systems pass resources to child processes.
+	On such a system, the new process may get two open files, hw1.c and the terminal device, and may simply transfer the data between the two.
+
+	When a process creates a new process, two possibilities for execution exist:
+		1. The parent continues to execute concurrently with its childer.
+		2. The parent waits until some or all of its children have terminated.
+
+	There are also two address-space possbilities for the new process.
+		1. The child process is a duplicate of the parent process (it has the same program and data as the parent).
+		2. The child process has a new program loaded into it.
+
+	To illustrate these differences, let's first consider the UNIX operating system.
+
+	In UNIX, each process is identified by its process identifier, which is a unique integer.
+	A new process is created by the fork() system call.
+	The new process consists of a copy of the address space of the original process.
+
+	This mechanism allows the parent process to communicate easily with its child process. 
+	Both processes (the parent and the child) continue execution at the instruction after the fork(),with one difference: the return code for the fork() is zero for the new (child) process, whereas the (nonzero) process identifier of the child is returned to the parent.
+
+	After a fork() system call, one of the two processes typically uses the exec() system call to replace the process's memory space with a new program. 
+	The exec() system call loads a binary file into memory (destroying the memory image of the program containing the exec() system call) and starts its execution.
+
+	In this manner, the two processes are able t communicate and then go their separate ways.
+
+	The parent can then create more children; or, if it has nothing else to do while the child runs, it can issue a wait() system call to move itself off the ready queue until the termination of the child.
+	Because the call to exec() overlays the process's address space with a new program, exec() does not return control unless an error occurs.
+
+	Process Termination
+
+	A process terminates when it finishes executing its final statement and asks the operating system to delete it by using the exit() system call.
+	At that point, the process may return a status value (typically an integer) to its waiting parent process (via the wait() system call).
+	All the resources of the process -including physical and virtual memory, open files, and I/O buffers - are deallocated and reclaimed by the operating system.
+
+	Termination can occur in other circumstances as well.
+	A process can cause the termination of another process via an appropriate system call (for example, TerminateProcess() in Windows).
+	Usually, such a system call can be invoked only by the parent of the process that is to be terminated.
+	Otherwise, a user - or a misbehaving application - could arbitrarily kill another user's processes.
+	
+	Note that a parent needs to know the identities of its children if it is to terminate them.
+	Thus, when one process creates a new process, the identity of the newly created process is passed to the parent.
+
+	A parent may terminate the execution of one of its children for a variety of reasons, such as these:
+
+		The child has exceeded it usage of some of the resources that it has been allocated. (To determine whether this has occured, the parent must have a mechanism to inspect the state of its children.)
+
+		The task assigned to the child is no longer required.
+
+		The parent is exiting, and the operating system does not allow a child to continue if its parent terminates.
+
+	Some systems do not allow a child to exist if its parent has terminated.
+	In such systems, if a process terminates (either normally or abnormally), then all its children must also be terminated.
+	This phenomenon, refferd to as cascading termination, is normally initiated by the operating system.
+
+	To illustrate process execution and termination, consider that, in Linux and UNIX systems, we can terminate a process by using the exit() system call, providing an exit status as a parameter:
+		/* exit with status 1 */
+		exit(1);
+
+	In fact, under normal termination, exit() will be called either directly or indirectly, as the C run-time library (which is added to UNIX executable files) will include a call to exit() by default.
+
+	A parent process may wait for the termination of a child process by using the wait() system call. 
+	The wait() system call is passed a parameter that allows the parent to obtain the exit status of the child.
+	This system call also returns the process identifier of the terminated child so that the parent can tell which of its children has terminated.
+
+		pid_t pid;
+		int status;
+
+		pid = wait(&status);
+
+	When a process terminates, its resources are deallocated by the operating system. 
+	However, its entry in the process table must remain there until the parent calls wait(), because the process table contains the process's exit status.
+
+	A process that has terminated, but whose parent has not yet called wait(), is known as a zombie process.
+	All processes transition to this state when they terminate, but generally they exist as zombies only briefly.
+	Once the parent calls wait(), the process identifier of the zombie process and its entry in the process table are released.
+
+	Now consider what would happen if a parent did not invoke wait() and instead terminated, thereby leaving its child processes as orphans.
+
+	Traditional UNIX systems addressed this scenario by assigning the init process as the new parent to orphan processes. 
+	The init process periodically invokes wait(), thereby allowing the exit status of any orphaned process to be collected and releasing the orphan's process identifier and process-table entry.
+
+	Android Process Hierarchy
+
+	Because of resource constraints such as limited memory, mobile operating systems may have to terminate existing processes to reclaim limited system resources.
+	Rather than terminating an arbitrary process, Android has identified an importance hierarchy of processes, and when the system must terminate a process to make resources available for a new, or more important, process, it terminates processes in order of increasing importance.
+
+	For most to least important, the hierarchy of process classifications is as follows:
+		Foreground process - The current process visible on the screen, representing the application the user is currently interacting with
+
+		Visible process - A process that is not directly visible on the foreground but that is performing an activity that the foreground process is referring to (that is, a process performing an activity whose status is displayed on the foreground process)
+
+		Service process - A process that is similar to a background process but is performing an activity that is apparent to the user (such as streaming music)
+
+		Background process - A process that may be performing an activity but is not apparent to the user.
+
+		Empty process - A process that holds no active components associated with any application
+
+	If system resources must be reclaimed, Android will first terminate empty processes, followed by background processes, and so forth.
+	Processes are assigned an importance ranking, and Android attempts to assign a process as high a ranking as possible.
+
+Interprocess Communication
+
+	Processes executing concurrently in the operating system may be either independent processes or cooperating processes.
+	A process is independent if it does not share data with any other processes executing in the system.
+	A process is cooperating if it can affect or be affected by other processes executing in the system.
+	Clearly, any process that shares data with other processes is a cooperating process.
+
+	There are several reasons for providing an environment that allows process cooperation.
+		Information sharing - Since several applications may be interested in the same piece of information (for instance, copying and pasting), we must provide an environment to allow concurrent access to such information.
+
+		Computation speedup - If we want a particular task to run faster, we must braek it into subtasks, each of which will be executing in parallel with the others.
+		Notice that such a speedup can be achieved only if the computer has multiple processing cores.
+
+		Modularity - We may want to construct the system in a modular fashion, dividing the system functions into separate processes or threads.
+
+	Cooperating processes require an interprocess communication (IPC) mechanism that will allow them to exchange data - that is, send data to and receive data from each other.
+	
+	There are two fundamental models of interprocess communication:
+
+	shared memory and message passing. 
+
+	In the shared-memory model, a region of memory that is shared by the cooperating processes is established.
+	Processes can then exchange information by reading and writing data to the shared region.
+
+	In the message-passing model, communication takes place by means of messages exchanged between the cooperating processes.
+
+	Both of the models just mentioned are common in operating systems, and many systems implement both.
+	Message passing is useful for exhanging smaller amounts of data, because no conflicts need be avoided.
+	Message passing is also easier to implement in a distributed system than shared memory.
+	Shared memory can be faster than messge passing, since message-passing systems are typically implemented using system calls and thus require the more time-consuming task of kernel intervention.
+	In shared-memory systems, system calls are required only to establish shared memory regions.
+	Once shared memory is established, all accesses are treated as routine memory accesses, and no assitance from the kernel is required.
+
+IPC in Shared-Memory Systems
+	
+	In Shared-Memory System there is a
+	Producer process
+		produces information
+	and Consumer process
+		consume information
+
+	Buffer
+		The two types of buffer can be used.
+			The unbounded buffer
+				Places no practical limit on the size of the buffer
+			The bounded buffer
+				assumes a fixed buffer size.
+
+IPC in Message-Passing System
+	
+	operating system provide the means for cooperating processes to communicate with each other via a message-passing facility
+
+	A message-passing facility provides at least two operations:
+		send(message)
+	and
+		recieve(message)
+
+Synchronization
+
+	Communication between processes takes place through calls to send() and recieve() primitives.
+
+	Message passing may be either blocking or nonblocking also known as synchronous and asynchronous.
+
+		Blocking send - the sending process is blocked until the message is received by the receiving process or by the mailbox.
+
+		Nonblocking send - The sending process sends the message and resumes operation.
+
+		Blocking receive - The receiver blocks until a message is available.
+
+		Nonblocking receive - The receiver retrieves either a valid message or a null.
+
+
+Buffering
+	
+	Whether communication is direct or indirect, messages exchanged by communicating processes reside in a temporary queue.
+
+	Basically, such queues can be implemented in three ways.
+
+	1. Zero Capacity - The queue has maximum length of zero, In this case the sender must block until the recipient receives the message.
+
+	2. Bounded capacity - The queue has finite length n.
+
+	3. Unbounded capacity - The queue's length is potentially infinite. The sender never blocks
+
+	The Zero-capacity case is reffered as message system with no buffering.
+	Other cases are referred as systems with automatic buffering.
+
+Communication in Client-Server Systems
+
+	Shared memory and message passing works here too
+
+	There are other ways too like
+
+	sockets 
+
+	remote procedure calls (RPCs)	
+
+
+Sockets
+	
+	A socket is defined as an endpoint for communication.
+
+	A pair of processes communicating over a network employs a pair of sockets one for each process.
+
+	A socket is identified by an IP address concatenated with a port number.
+
+	In general, sockets use a client-server architecture.
+
+	java provides three different types of sockets.
+		Connection-oriented (TCP) - implemented with the Socket class.
+		Connectionless (UDP) - use the DatagramSocket class.
+		MulticastSocket - is a subclass of the DatagramSocket class.
+
+Remote Procedure Calls
+
+	It is the most common form of remote service 
+
+	It was designed as a way to abstract the procedure-call mechanism for use between systems with network connections.
+
+	It is similar to IPC mechanism
+
+	210
+

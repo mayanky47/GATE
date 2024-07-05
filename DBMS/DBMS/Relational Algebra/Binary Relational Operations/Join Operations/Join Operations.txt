@@ -1,0 +1,24 @@
+ ************
+ Inner Joins
+ ************
+ -----------------------------------------------------------------------------------------------
+ In an inner join, only those tuples that satisfy the matching criteria are included, while the rest are exluded.
+
+ Types of Inner Joins:
+ 	Theta Join
+ 	EQUI join
+ 	Natural join
+
+------------------------------------------------------------------------------------------------
+***************
+Outer Join
+***************
+------------------------------------------------------------------------------------------------
+In an outer join, along with tuples that satisfy the matching criteria, we also include some or all tuples that do not match the criteria.
+
+Types of outer join
+	Left Outer Join (A ⟕ B)
+	Right Outer Join ( A ⟖ B )
+	Full Outer Join (A ⟗ B)
+
+------------------------------------------------------------------------------------------------

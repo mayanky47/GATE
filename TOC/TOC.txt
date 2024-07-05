@@ -1,0 +1,619 @@
+AUTOMATA, COMPUTABILITY, AND COMPLEXITY
+
+	This book focuses on three central area of the theory of computation:
+		automata
+		computability
+		complexity.
+
+	they are linked by the question:
+		What are the fundamental capabilities and limitations of computers?
+
+	COMPLEXITY THEORY
+
+	Computer problems come in different varieties, some are easy some are hard.
+	For example - sorting problem is an easy one.Even a small computer can sort a million numbers rather quickly.
+	Scheduling problem are hard, if you have thousand classes, finding the best schedule may require centuries, even with a supercomputer.
+
+	What makes some problems computationally hard and others easy?
+
+	This is the central question of complexity theory.
+	but we don't know the answer to it.
+	though it has been intensively researched for over 40 years.
+
+	one important achievement of complexity theory thus far - 
+	researchers discovered 	an elegant scheme for classifying problems according to their computational difficulty.
+
+	It is analogous to the periodic table for classifying elements according to their chemical properties. Using this scheme, 
+	We can demonstrate a method for giving evidence that certain problems are computationally hard, even if we are unable to prove that they are.
+
+	You have several options when you confront a problem that appears to be computationally hard.
+
+		First, by understanding which aspect of the problem is at the root of the difficulty, you may be able to alter it so that the problem is more easily solvable.
+		
+		Second, you may be able to settle for less than a perfect 	solution to the problem.
+			In certain cases, finding solutions that only approximate the perfect one is relatively easy.
+
+		Third, some problems are hard only in the worst case situation, but easy most of the time.
+
+		Finally, you may consider alternative types of computation, such as randomized computation, that can speed up certain tasks.
+
+	One applied area that has been affected directly by complexity theory is the ancient field of cryptography.
+		In most fields, an easy computational problem is preferable to a hard one because easy ones are cheaper to solve. Cryptography is unusual because it specifically requires computational problems that are hard, rather than easy.
+		Secret codes should be hard to break without the secret key or password.
+		Complexity theory has pointed cryptographers in the direction of computationally hard problems around which they have designed revolutionary new codes.
+
+	COMPUTABILITY THEORY
+
+	During first half of the twentieth century, mathematicians such as Kurt Godel, Alan Turing and Alonzo Church discovered that 
+
+	certain basic problems cannot be solved by computers.
+		One example of this phenomenon is the problem of determining whether a mathematical statement is true or false.
+			This task is the bread and butter of mathematicians.
+			It seems like a natural for solution by computer because it lies strictly within the realm of mathematics. 
+			But no computer algorithm can perform this task.
+	Among the consequences of this profound result was the development of ideas concerning theoretical models of computers that eventually would help lead to the construction of actual computers.
+
+	The theories of computability and complexity are closely related.
+		In complexity theory, 
+			the objective is to clasify problems as easy ones and hard ones.
+		In computability theory,
+			the classification of problem is by those that are solvable and those that are not.
+
+		Computability theory introduces several of the concepts used in complexity theory.
+
+	AUTOMATA THEORY
+
+	Automata theory deals with the definitions and properties of mathematical models of computation.
+		These models play a role in several applied areas of computer science.
+
+	One model, called hte finite automaton,
+		is used in text processing, compilers, and hardware design.
+	Another model, called the context-free grammar,
+		is used in programming languages and artificial intelligence.
+
+	Automata theory is an excellent place to begin the study of the theory of computation.
+
+	The theories of computability and complexity require a precise definition of a computer.
+		Automata theory allows practice with formal definitions of computation as it introduces concepts relevant to other nontheoretical areas of computer science.
+
+MATHEMATICAL NOTIONS AND TERMINOLOGY
+
+	SETS
+
+	A set is a group of objects represented as a unit.
+		Set may contain any type of object, including numbers, symbols, and even other sets.
+	The objects in a set are called its elements or members.
+	Sets may be described formally in several ways.
+		One way is by listing a set's elements inside braces.
+			S = { 7,4,3}
+
+			contains the elements 7,4 and 3. The symbol ∈ and ∉ denote set membership and nonmembership.
+				We write 7 ∈ {7, 4,3} and 8 ∉ {7,4,3}. 
+	For two sets A and B, we say that A is a subset of B, written A ⊆ B, if every member of A also is a member of B.
+	
+	We say that A is proper subset of B, written A ⊊ B, if A is a subset of B and not equal to B.
+
+	The order of describing a set doesn't matter, nor does repetition of its members. We get the same set S by writing { 4,3,3,3,3,7}.
+		If we do want to take the number of occurrences of members into account, we call the group a multiset instead of set.
+
+	Thus {7} and {7,7} are different as multisets but identical as sets.
+
+	An infinite set contains infinitely many elements.
+
+	We cannot write a list of all elements of an infinite set, so we sometimes use the "..." notation to mean "continue the sequence forever." 
+		Thus we write the set of natural numbers N as
+			{ 1, 2,3,...}.
+		The set of integers Z is written as 
+			{..., -2,-1,0,1,2,...}.
+
+	The set with zero members is called the empty set and is written Φ. 
+	The set with one member is sometimes called a singleton set, and a set with two members is called an unordered pair.
+
+	When we want to describe a set containing elements according to some rule, we write {n| rule about n}. 
+		Thus {n|n=m^2 for some m ∈ N} means the set of perfect squares.
+
+	If we have two sets A and B,
+		The union of A and B, written A∪B
+			is the set we get by combining all the elements in A and B into a single set.
+		The intersection of A and B, written A∩B
+			is the set of elements that are in both A and B.
+		The complement of A, written Ā,
+			is the set of all elements under consideration that are not in A.
+
+	As is often the case in mathematics, a picture helps clarify a concept. 
+		For sets, we use a type of picture called a Venn diagram.
+			It represents sets as regions enclosed by circular lines.
+
+	SEQUENCES AND TUPLES
+
+	A sequence of objects is a list of these objects in some order.
+		We usually designate a sequence by writing the list within parentheses.
+		For example, the sequence 7,21,57 would be written
+			(7,21,57).
+	The order doesn't matter in a set,but in a sequence it does.
+		Hence (7,21,57) is not the same as (57,7,21).
+	Similarly, repetition does matter in a sequence, but it doesn't matter in a set.
+		Thus (7,7,21,57) is different from both of the other sequences, whereas the set {7,21,57} is identical to the set {7,7,21,57}.
+	As with sets, sequences may be finite or infinite.
+	
+	Finite sequences often are called tuples.
+		A sequence with k elements is a k-tuple.
+			Thus  (7,21,57) is a 3-tuple.
+			A 2-tuple is also called an ordered pair.
+
+	Set and sequences may appear as elements of other sets and sequences.
+	For example, 
+		the power set of A is the set of all subsets of A. if A is the set {0,1}, the power set of A is the set {∅, {0},{1},{0,1}}. 
+		The set of all ordered pairs whose elements are 0s and 1s is {(0,0),(0,1),(1,0),(1,1)},
+	If A and B are two sets, the Cartesian product or cross product of A and B, written AxB, 
+		is the set of all ordered pairs wherein the first element is a member of A and the second element is a member of B.
+		Example
+			If A = {1,2} and B = {x,y,z},
+			AxB = {(1,x),(1,y),(1,z),(2,x),(2,y),(2,z)}.
+
+		We can also take the Cartesian product of k sets, A(1),       A(2),...,A(k), written A(1)xA(2)x...xA(k).It is the set consisting of all k-tuples(a(1),a(2),...,a(k)) where a(i) ∈ A(i).
+
+		If we have the Cartesian product of a set with itselt, we use the shorthand
+			AxAxAxA = A^4
+
+	FUNCTIONS AND RELATIONS
+
+	Functions are central to mathematics. A function is an object that sets up an input-output relationship. A function takes an input and produces an output.
+
+	In every function, the same input always produces the same output. If F is a function whose output value is b when the input value is a, we write
+		F(a) = b.
+
+	A function also called a mapping, and, if F(a) = b, we say that F maps a to b.
+
+	The set of possible inputs to the function is called its domain. The outputs of a function come from a set called its range. The notation for saying that F is a function with domain D and range R is
+		F:D->R.
+
+	When the domain of a function F is A(1)xA(2)X...xA(k) for some sets A(1),...,A(k), the input to F is a K-tuple(a(1),a(2),...,a(k)) and we call the a(i) the arguments to F.
+	A function with k arguments is called a k-ary function, and k is called the arity of the function.
+		if k is 1, F has a single argument and F is called unary function.
+		if k is 2, F is a binary function.
+			Certain familiar binary functions are written in a special infix notatation, with the symbol for the function placed between its two arguments, rather than in prefix notation, with the symbol preceding.
+
+			Ex. the addition function add usually is written in infix notation with the + symbol between its two arguments as in a + b instead of in prefix notation add(a,b).
+
+	A predicate or property is a function whose range is {TRUE,FALSE}.
+	Ex. let even be a property that is TRUE if its input is an even number and FALSE if its input is an odd number.
+		Thus even(4) = TRUE and even(5) = FALSE.
+
+	A property whose domain is a set of k-tuples Ax...xA is called a relation, a k-ary relation, or a k-ary relation on A.
+		A common case is a 2-ary relation, called a binary relation.
+			When writing an expression involving a binary relation, we customarily use infix notation.
+			Ex. "less than" is a relation usually written with the infix operation symbol <.
+			"Equality", written with the = symbol, is anothoer familiar relation.
+			If R is a binary relation, the statement aRb means that aRb= TRUE.
+			Similarly, if R is a k-ary relation, the statement R(a(1),...,a(k)) means that R(a(1),...,a(k)) = TRUE.
+
+	Sometimes describing predicates with sets instead of functions is more convenient.
+		The predicate P:D->{TRUE,FALSE} may be written (D,S), where S = {a ∈ D|P(a)=TRUE}, or simply S if the domain D is obvious from the context.
+			Hence the relation beats may be written
+				{(SCISSORS,PAPER),(PAPER,STONE),(STONE, SCISSORS)}.
+
+	A special type of binary relation, called an equivalence relation, captures the notion of two objects being equal in some feature. 
+		A binary relation R is an equivalence relation if R satisfies three conditions.
+			1. R is reflexive if for every x, xRx;
+			2. R is symmetric if for every x and y, xRy implies yRx
+			3. R is transitive if for every x,y,and z, xRy and yRz implies xRz.
+	GRAPHS
+
+	An undirected graph, or simply a graph, is a set of points with lines connecting some of the points. The points are called nodes or vertices, and the lines are called edges.
+
+	The number of edges at a particular node is the degree of that node. 
+		No more than one edge is allowed between any two nodes.
+		We may allow an edge from a node to itself, called a self-loop, depending on the situation.
+
+	In a graph G that contains nodes i and j, the pair(i,j) represents the edge that connects i and j.
+		The order of i and j doesn't matter in an undirected graph, so the pairs(i,j) and (j,i) represent the smae edge.
+	Sometimes we describe undirected edges with unordered pairs using set notatino as in {i,j}. If V is the set of nodes of G and E is the set of edges, we say G = (V,E). 
+		We can describe a graph with a diagram or more formally by specifying V and E.
+		Ex. a formal description of the graph is
+			({1,2,3,4,5},{(1,2),(2,3),(3,4),(4,5),(5,1)})
+
+	Graphs frequently are used to represent data. Nodes might be cities and edges the connecting highways, or nodes might be people and edges the friendships between them.
+	Sometimes, for convenience, we label the nodes and/or edges of a graph, which then is called a labeled graph, 
+
+	We say that graph G is a subgraph of graph H if the nodes of G are a subset of the nodes of H, and the edges of G are the edges of H on the corresponding nodes.
+
+	A path in a graph is a sequence of nodes connected by edges. 
+	A simple path is a path that doesn't repeat any nodes.
+	A graph is connected if every two nodes have a path between them.
+	A path is a cycle if it starts and ends in the same node.
+	A simple cycle is one that contains at least three nodes and repeats only the first and last nodes.
+	A graph is a tree if it is connected and has no simple cycles.
+		A tree may contain a specially designated node called the root.
+		The nodes of degree 1 in a tree, other than the root, are called the leaves of the tree.
+
+	A directed graph has arrows instead of lines.
+		The number of arrows pointing from a particular node is the outdegree of that node, and the number of arrows pointing to a particular node is the indegree.
+	In a directed graph, we represent an edge from i to j as a pair (i,j).
+	The formal desciption of a directed graph G is (V,E), where V is the set of nodes and E is the set of edges.
+
+	A path in which all the arrows point in the same direction as its steps is called a directed path. 
+	A directed graph is strongly connected if a directed path connects every two nodes.
+	Directed graphs are handy way of depicting binary relations.
+		If R is a binary relation whose domain is DxD, and labeled graph G = (D,E) represent R, where E = {(x,y)|xRy}
+
+	STRINGS AND LANGUAGES
+
+	Strings of characters are fundamental building blocks in computer science.
+	The alphabet over which the strings are defined may vary with the application.
+		For our purposes, we define an alphabet to be any nonempty finite set.
+	The members are the symbols of the alphabet.
+	We generally use capital Greek letters Σ and Γ to designate alphabets and a typewriter font for smybols from an alphabet.
+		Few examples of alphabets.
+		Σ(1) = {0,1}
+		Σ(2) = {a,b,c,d,e,f,g,h,i,j,k,l,m,n,...,z}
+		Γ = {0,1,x,y,z}
+
+	A string over an alphabet is a finite sequence of symbols from that alphabet, usually written next to one another and not separated by commas. 
+	If Σ = {0,1}, then 01001 is a string over Σ.
+	If Σ = {a,b,c,...,z}, then abracadabra is a string over Σ.
+	If w is a string over Σ, the length of w, written |w|, is the number of symbols that it contains.
+	The string of length zero is called the empty string and is written  ε.
+		The empty string pays the role of 0 in a number system. 
+	If w has length n, we can write w = w(1)w(2)...w(n) where each w(i) ∈ Σ. 
+	The reverse of w, written w^R , is the string obtained by writing w in the opposite order (w(n)w(n-1)...w(1)).
+	String z is a substring of w if z appears consecutively within w.
+		Ex. cad is a substring of abracadabra.
+
+	If we have string x of length m and string y of length n, the concatenation of x and y, written xy, is the string obtained by appending y to the end of x, as in x(1)...x(m)y(1)...y(n).
+		To concatenate a string with itself many times, we use the superscript notation x^k to mean
+			xxx...x (k times).
+
+	The lexicographic order of strings is the same as the familiar dictionary order.
+	We'll occasionally use a modified lexicographic order, called shortlex order or simply string order, that is identical to lexicographic order, except that shorter strings precede longer strings. 
+		Thus the string ordering of all strings over the alphabets {0,1} is
+			(ε, 0,1,00,01,10,11,000,...).
+
+	Say that string x is a prefix of string y if a string z exists where xz = y, and that x is a proper prefix of y if in addition  x ̸= y.
+	A language is a set of strings.
+	A language is prefix-free if no member is a proper prefix of another member.
+
+	BOOLEAN LOGIC
+
+	Boolean logic is a mathematical system built around the two values TRUE and FALSE. 
+	Though originally conceived of as pure mathematics, this system is now considered to be the foundation of digital electronics and computer design.
+	The values TRUE and FALSE are called the Boolean values and are often represented by the values 1 and 0.
+		We use Boolean values in situations with two possibilities, such as a wire that may have a high or a low voltage, 
+		a proposition that may be true or false, or a qustion that may be answered yes or no.
+
+	We can manipulate Boolean value with the Boolean operations.
+		The simplest Boolean ooperation is the negation or NOT operation, designated wiht the symbol ¬.The negation of a Boolean value is the opposite value.
+			Thus ¬0 = 1 and ¬1 = 0.
+		We designate the conjunction or AND operation with the symbol ∧. The conjunction of two Boolean values is 1 if both of those values are 1.
+		The disjunction or OR operation is designated with the symbol ∨. The disjunction of two Boolean values is 1 if either of those values is 1.
+
+	We use Boolean operations for combining simple statements into more complex Boolean expressions.
+		Ex. if P is the Boolean value representing TRUE and Q represents the FALSE, we may write P ∨ Q to represent P OR Q.
+		The values P and Q are called the operands of the operation.
+	The exclusive or, or XOR, operation is designated by the ⊕ symbol and is 1 if either but not both of its two operands is 1.
+	The equality operation, written with the symbol <->,is 1 if both of its operands have the same value.
+	The implication operation is designated by the symbol -> and is 0 if its first operand is 1 and its second operand is 0.otherwise, -> is 1.
+
+	We can establish various relationships among these operations.
+	In fact, we can express all Boolean operations in terms of the AND and NOt operations.
+	Ex. 
+		P∨Q = ¬(¬P∧¬Q)
+		P->Q = ¬P∨Q
+		P<->Q = (P->Q)∧(Q->P)
+		P⊕Q = ¬(P<->Q)
+
+	The distributive law for AND and OR comes in handy when we manipulate Boolean expressions.
+		P∧(Q∨R) equals (P∧Q)∨(P∧R), and its dual
+		P∨(Q∧R) equals (P∨Q)∧(P∨R).
+
+DEFINITINS, THEOREMS, AND PROOFS
+
+	Theorems and proofs are the heart and soul of mathematics and definitions are its spirit.
+	These three entities are central to every mathematical subject, including ours.
+
+	Definitions describe the objects and notions that we use.
+		A definition may be simple, as in the definition of set, or complex as in the definition of security in cryptographic system.
+	Precision is essential to any mathematical definition.
+	When defining some object, we must make clear what constitutes that object and what does not.
+	After we have defined various objects and notions, we usually make mathematical statements about them.
+		Typically, a statement expresses that some object has a certain property.
+	The statement may or may not be true, but like a definition, it must be precise. No ambiguity about its meaning is allowed.
+	A proof is a convincing logical argument that a statement is true.
+	In mathematics, an argument must be airtight. that is, convincing in an absolute sense.
+
+	A theorem is a mathematical statement proved true.
+		Generally we reserve the use of that word for statements for special interest.
+		Occasionally we prove statements that are interesting only because they assist in the proof of another, more significant statement.
+		Such statements are called lemmas.
+		Occasionally a theorem or its proof may allow us to conclude easily that other, related statements are true.
+		These statements are called corollaries of the theorem.
+
+	FINDING PROOFS
+
+	The only way to determine the truth or falsity of a mathematical statement is with a mathematical proof.
+		Unfortunately, finding proofs isn't always easy.
+		It can't be reduced to a simple set of rules or processes.
+		Sometimes the parts of a multipart statement are not immediately evident.
+
+	One frequently occurring type of multipart statement has the form "P if and only if Q", often written "P iff Q", where both P and Q are mathematical statements.
+		This notation is shorthand for a two-part statement. 
+			The first part is "P only if Q" which means: If P is true, then Q is true, written P⇒Q.
+			The second is "P if Q", which means: if Q is true, then P is true, written P⇐Q.
+			The first of these parts is the forward direction of the original statement and the second is the reverse direction.
+			We write "P if and only if Q" as P ⇐⇒Q.
+			To prove a statement of this form, you must prove each of the two directions.
+				Often, one of these directions is easier to prove than the other.
+	Another type of multipart statement states that two sets A and B are equal.
+		The first part states that A is a subset of B.
+		The second part states that B is a subset of A.
+		Thus one common way to prove that A = B is to prove that every member of A also is a member of B, and that every member of B also is a member of A.
+	TYPES OF PROOF
+
+	Several types of arguments arise frequently in mathematical proofs.
+	Here, we describe a few that often occur in the theory of computation.
+	Note that a proof may contain more than one type of argument because the proof may contain within it several different subproofs.
+
+	PROOF BY CONSTRUCTION
+
+	Many theorems state that a particular type of object exists.
+	One way to prove such a theorem is by demonstrating how to construct the object. This technique is a proof by construction.
+
+	Let's use a proof by construction to prove the following theorem.
+	We define a graph to be k-regular if every node in the graph has degree k.
+
+	THEOREM 
+
+	For each even number n greater than 2, there exists a 3-regular graph with n nodes.
+
+	PROOF 
+
+	Let n be an even number greater than 2. Construct graph G = (V,E)
+	 with n nodes as follows.
+	 The set of nodes of G is V = {0,1,2,...,n-1}, and the set of edges of G is the set 
+	 	E = {{i,i+1}|for 0≤i≤n-2}∪{{n-1,0}}∪
+	 		{{i,i+n/2}|for 0≤i≤n/2-1}
+
+	 Picture the nodes of this graph written consecutively around the circumference of a circle. In that case, the edges described in the top line of E go between adjacent pairs around the circle.
+	 The edges described in the bottom line of E go between nodes on opposite sides of the circle. 
+	 This mental picture clearly shows that every node in G has degree 3.
+
+
+	 PROOF BY CONTRADICTION
+
+	 In one common form of argument for proving a theorem, we assume that the theorem is false and then show that this assumption leads to an obviously false consequence, called a contradition.
+
+	 let's prove by contradiction that the square root of 2 is an irrational number.
+	 	A number is rational if it is a fraction m/n, where m and n are integers.
+	 	In other words, a rational number is the ration of integers m and n.
+	 	For Example, 2/3 obviously is a rational number. A number is irrational if it is not rational.
+
+	 THEOREM
+	 	√2 is irrational.
+
+	 	PROOF
+	 	First we assume for the purpose of later obtaining a contradiction that √2 is rational.
+	 		Thus √2 = m/n,
+	 	where m and n are integers. If both m and n are divisible by the same integer greater than 1,divide both by the largest such integer.
+	 	Doing so doesn't change the value of the fraction.
+	 	Now, at least one of m and n must be an odd number.
+	 	We multiply both sides of the equation by n and obtain
+	 		n√2 = m.
+	 	We square both sides and obtain
+	 		2n^2 = m^2
+	 	Because m^2 is 2 times the integer n^2, we know that m^2 is even. Therefore, m, too, is even, as the square of an odd number always is odd. So we can write m = 2k for some integer k. Then, substituting 2k for m, we get
+	 		2n^2 = (2k)^2
+	 			 = 4k^2.
+		Divide both sides by 2, we obtain
+			n^2 = 2k^2.
+		But this result shows that n^2 is even and hence that n is even. Thus we have establised that both m and n are even. But we had earlier reduced m and n so that they were not both even - a contradiction.
+
+	PROOF BY INDUCTION
+
+	Proof by induction is an advanced method used to show that all elements of an infinite set have a specified property.
+		For example, we may use a proof by induction to show that an arithmetic expression computes a desired quantity for every assignment to its variables, or that a program works correctly at all steps or for all inputs.
+
+	To illustrate how proof by induction works, let's take the infinite set to be the natural numbers, N = { 1,2,3,...}, and say that the property is called P, 
+	Our goal is to prove that P(k) is true for each natural number k.
+		In other words, we want to prove that P(1) is true, as well as P(2),P(3),P(4), and so on.
+
+	Every proof by induction consists of two parts, the basis and the induction step. Each part is an individual proof on its own. The basis proves that P(1) is true. The induction step proves that for each i ≥ 1, if P(i) is true, then so is P(i+1).
+	When we have proven both of these parts, the desired result follows - namely, that P(i) is true for each i.
+		Why?
+		First, we know that P(1) is true because the basis proves it.
+		Second, we know that P(2) is true because the induction step proves that if P(1) is true then P(2) is true, and we alraedy know that P(1) is true.
+		Third, we know that P(3) is true becaues the induction step proves that if P(2) is true then P(3) is true, and we already know that P(2) is true.
+		This process continues for al natural numbers, showing that P(4) is true, P(5) is true and so on.
+
+	Once you understand the preceding paragraph, you can easily understand variations and generalizations of the same idea.
+	For example, the basis doesn't necessarily need to start with 1, it may start with any value b. In that case, the induction proof shows that P(k) is true for every k that is at least b.
+	In the induction step, the assumption that P(i) is true is called the induction hypothesis.
+	Sometimes having the stronger induction hypothesis that P(j) is true for every j≤i is useful.
+	The induction proof still works because when we want to prove that P(i+1) is true, we have already proved that P(j) is true for every j ≤ i.
+
+	The format for writing down a proof by induction is as follows.
+
+	Basis: Prove that P(1) is true.
+
+	Induction step: For each i≥1, assume that P(i) is true and use this assumption to show that P(i+1) is true.
+
+	Now let's prove by induction the correctness of the formula used to calculate the size of monthly payments of home mortgages. When buying a home, many people borrow some of the money needed for the purchase and repay this loan over a certain number of years. Typically, the terms of such repayments stipulate that a fixed amount of money is paid each month to cover the interest, as well as part of the original sum, so that the total is repaid in 30 years. The formula for calculating the size of the monthly payments is shrouded in mystery, but actually is quite simple. It touches many people's lives so you should find it interesting.
+	We use induction to prove that it works, making it a good illustration of that technique.
+
+	First, we set up the names and meanings of several variables. Let P be the principal, the amount of the original loan. Let I > 0 be the yearly interest rate of the loan, where I = 0.06 indicates a 6% rate of interest. Let Y be the monthly payment. For convenience, we use I to define variable M, the monthly multiplier. It is the rate at which the loan changes each month because of the interest on it. Following standard banking practice, the monthly interest rate is one-twelfth of the annual rate so  M = 1+I/12, and interest is paid monthly (monthly compounding.)
+	Two things happen each month. First, the amount of the loan tends to increase because of the monthly multiplier. Second, the amount tends to decrease because of the monthly payment. Let P(t) be the amount of the loan outstanding after the tth month. Then P(0) = P is the amount of the original loan, P(1) = MP(0)-Y is the amount of the loan after one month, P(2) = MP(1)-Y is the amount of the loan after two months, and so on. Now we are ready to state and prove a theorem by induction on t that gives a formula for the value of P(t).
+
+	THEOREM
+
+	For each t>0, 
+		P(t)  = PM^t - Y(M^t -1/M-1)
+
+	PROOF
+
+	Basis: Prove that the formula is true for t = 0. If t = 0, then the formula states that 
+		P(0) = PM^0 - Y(M^0 -1/M-1)
+	We can simplify the right-hand side by observing that M^0 = 1.
+	Thus we get P(0) = P,
+
+	which holds because we have defined P(0) to be P. Therefore, we have proved that the basis of the induction is true.
+
+	Induction step: For each k≥0, assume that the formula is true for t = k and show that it is true for t = k+1. The induction hypothesis states that 
+		P(k) = PM^k - Y (M^k - 1/M-1)
+	Our objective is to prove that 
+		P(k+1) = PM^(k+1) - Y(M^(k+1) - 1/M-1)
+
+	We do so with the following steps. First, from the definition of P(k+1) from P(k), we know that 
+		P(k+1) = P(k)M -Y
+	Therefore, using the induction hypothesis to calculate P(k),
+		P(k+1) = [ PM^k - Y(M^k-1/M-1)]M-Y
+	Multiplying through by M and rewriting Y yields
+		P(k+1) = PM^(k+1) - Y(M^(k+1) - M/M-1) - Y(M-1/M-1)
+			   = PM^k+1 - Y(M^(k+1)-1/M-1).
+
+	Thus the formula is correct for t = k+1, which proves the theorem.
+
+
+
+------------ problems skipped (Page 49 - 52)    ------------- 
+
+
+
+REGULAR LANGUAGE
+
+	The theory of computation begins with a question: what is a computer? 
+		It is perhaps a silly question, as everyone knows that this thing I type on is a cmputer. But these real computers are quite complicated- too much so to allow use to set up a manageable mathematical theory of them directly.
+		Instead, we use an idealized computer called a computational model. As with any model in science, a computational model may be accurate in some ways but perhaps not in others.
+		Thus we will use several different computational models, depending on the features we want to focus on.
+		We begin with the simplest model, called the finite state machine or finite automaton.
+
+	FINITE AUTOMATA
+
+	Finite automata are good models for computers with an extremely limited amount of memory.
+		What can a computer do with such a small memory? Many useful things! In fact, we interact with such computers all the time, as they lie at the heart of various electromechanical devices.
+	The controller for an automatic door is one example of such a device. Often found at supermarket entrances and exits, automatic doors swing open when the controller sences that a person is approaching. An automatic door has a pad in front to detect the presence of a person about to walk through the doorway. Another pad is located to the rear of the doorway so that controller can hold the door open long enough for the person to pass all the way through and also so that the door does not strike someone standing behind it as it opens. 
+
+	The controller is in either of two states: "OPEN" or "CLOSED" representing the corresponding condition of the door. there are four possible input conditions: "FRONT" (meaning that a person is standing on the pad in front of the doorway) "REAR" (meaning that a person is standing on the pad to the rear of the doorway), "BOTH" (meaning that people are standing on both pads), and "NEITHER" (meaning that no one is standing on either pad).
+
+				   | NEITHER  FRONT REAR   BOTH
+			CLOSED | CLOSED   OPEN CLOSED CLOSED
+	state	OPEN   | CLOSED   OPEN  OPEN   OPEN
+
+	The controller moves from state to state, depending on the input it receives. When in the CLOSED state and receiving input NEITHER OR REAR, it remains in the CLOSED state. In addition, if the input BOTH is received, it stays CLOSED because opening the door risks knocking someone over on the rear pad. But if the input FRONT arrives, it moves to the OPEN state. In the OPEN state, if input FRONT, REAR, or BOTH is received, it remains in OPEN. If input NEITHER arrives, it returns to CLOSED.
+
+	For example, a controller might start in state CLOSED and receive the series of input signals FRONT, REAR, NEITHER, FRONT, BOTH, NEITHER , REAR, and NEITHER. It then would go through the series of states CLOSED(starting), OPEN, OPEN CLOSED, OPEN, OPEN, CLOSED, CLOSED, and CLOSED.
+
+	Thinking of an automatic door controller as a finite automaton is useful because that suggests standard ways of representation.
+	This controller is a computer that has just a single bit of memory, capable of recording which of the two states the controller is in. Other common devices have controllers with somewhat larger memories. In an elevator controller, a state may represent the floor the elevator is on and the inputs might be the signals received from the buttons. This computer might need several bits keep tack of this information. Controllers for various household appliances such as dishwashers and electronic thermostats, as well as parts of digital watches and calculators, are additional examples of computers with limited memories. The design of such devices requires keeping the methodology and terminology of finite automata in mind.
+
+	FORMAL DEFINITION
+
+	A finite automaton is a 5-tuple (Q,Σ,δ,q(0),F), where
+		1. Q is a finite set called the states,
+		2. Σ is a finite set called the alphabet,
+		3. δ:QxΣ->Q is the transition function,
+		4. q(0)∈Q is the start state, and
+		5. F⊆Q is the set of accept states.(accept states sometimes are called final states.)
+
+	If A is the set of all strings that machine M accepts, we say that A is the language of machine M and write L(M) = A.
+	We say that M recognizes A or that M accepts A.
+
+	A machine may accept several strings, but it always recongnizes only one language. If the machine accepts no strings, it still recongnizes one language namely, the empty language ∅.
+
+	We already have an informal idea of the way it computes, and we now formalize it mathematically.
+
+	Let M = (Q, Σ,δ,q(0),F) be a finite automaton and let w = w(1)w(2)...w(n) be a string where each w(i) is a member of the alphabet Σ. Then M accepts w if a sequence of states r(0),r(1),...,r(n) in Q exists with three conditions:
+		1. r(0) = q(0)
+		2. δ(r(i), w(i)+1) = r(i)+1, for i = 0,...,n-1, and
+		3. r(n)∈F.
+
+		Condition 1 says that the machine starts in the start state.
+		Condition 2 says that the machine goes from state to state according to the transition function.
+		Condition 3 says that the machine accepts its input if it ends up in an accept state.
+		We say that M recognizes languagge A if A = {w| M accepts w}.
+
+	DEFINITION
+
+	A language is called a regular language if some finite automaton recognizes it.
+
+	DESIGNING FINITE AUTOMATA
+
+	THE REGULAR OPERATION
+
+	DEFINITION
+
+	Let A and B be languages. We define the regular operations union, concatenation, and star as follows:
+		Union: A∪B = { x| x∈A or x ∈ B}.
+		Concatenation: A o B = {xy|x∈A and y ∈ B}.
+		Star: A* = {x(1)x(2)...x(k)|k≥0 and each x(i) ∈ A}
+
+	Union operation simply takes all the strings in both A and B and lumps them together into one language.
+
+	The concatenation operation attaches a string from A in front of a string from B in all possible ways to get the strings in the new language.
+
+	The star operation is a unary operation instead of binary operation. It works by attaching any number of strings in A together to get a string in the new language.
+		Because "any number" include 0 as a possibility, the empty string ε is always a member of A*, no matter what A is.
+
+	THEOREM 
+
+	The class of regular languages is closed under the union operation.
+	In other words, if A(1) and A(2) are regular languages, so is A(1)∪A(2)
+
+	PROOF IDEA 
+
+	We have regular languages A(1) and A(2) and want to show that     A(1)∪A(2) also is regular. Because A(1) and A(2) are regular, we know that some finite automaton M(1) recognizes A(1) and some finite anutomaton M(2) recognize A(2). To prove that A(1)∪A(2) is regular, we demonstrate a finite automaton, call it M, that recognizes A(1)∪A(2).
+
+	This is a proof by construction. We construct M from M(1) and M(2). Machine M must accept its input exactly when either M(1) or M(2) would accept it in order to recognize the union language. It works by simulating both M(1) and M(2) and accepting if either of the simulations accept.
+	How can we make machine M simulate M(1) and M(2)? Perhaps it first simulates M(1) on the input and then simulates M(2) on the input. But we must be careful here! Once the symbols of the input have been read and used to simulate M(1), we can't "rewind the input tape" to try the simulation on M(2). We need another approach.
+	Pretend that you are M. As the input symbols arrive one by one, you simulate both M(1) and M(2) simultaneously. That way, only one pass through the input is necessary. But can you keep track of both simulations with finite memory? All you need to remember is the state that each machine would be in if it had read up to this point in the input. Therefore, you need to remember a pair of states. How many possible pairs are there? If M(1) has k(1) states and M(2) has k(2) states, the number of pairs of states, one from M(1) and other from M(2), is the product k(1) x k(2).
+	This product will be the number of states in M, one for each pair. The transitions of M go from pair to pair, updating the current state for both M(1) and M(2). The accept states of M are those pairs wherein either M(1) or M(2) is in an accept state.
+
+	THEOREM
+
+	The class of regular languages is closed under the concatenation operation.
+	In other words, if A(1) and A(2) are regular languages then so is A(1)oA(2).
+
+	To prove this theorem, let's try something along the lines of the proof of the union case. As before, we can start with finite automata M(1) and M(2) recognizing the regular languages A(1) and A(2). But now, instead of constructing automaton M to accept its input if either M(1) or M(2) accept, it must accept if its input can be broken into two pieces, where M(1) accepts the first piece and M(2) accepts the second piece. The problem is that M doesn't know where to break its input (i.e., where the first part ends and second begins). To solve this problem, we introduce a new technique called nondeterminism.
+
+	NONDETERMINISM
+
+	Nondeterminism is a useful concept that has had great impact on the theory of computation. So far in our discussion, every step of a computation follows in a unique way from the preceding step.When the machine is in a given state and reads the next input symbol, we know what the next state will be- it is determined. We call this deterministic computation. In a nontereministic machine, several choices may exist for the next state at any point.
+	Nondeterminism is generalization of determinism, so every deterministic finite automaton is automatically a nondeterministic finite automaton. nondeterministic finite automata may have additional features.
+	The difference between a detereministic finite automaton, abbreviated DFA, and a nondeterministic finite automaton, abbreviated NFA< is immediately apparent.
+	First, every state of DFA always has exactly one exiting transition arrow for each symbol in the alphabet. The NFA violate that fule. In an NFA, a state may have zero, one, or many exiting arrows for each alphabet symbol.
+	Second, in a DFA, labels on the transition arrows are symbols from the alphabet. an NFA may have arrows labeled with members of the alphabet or ε. Zero, one or many arrows may exit from each state with the label ε.
+
+	How does an NFA compute? Suppose that we are running an NFA on an input string and come to a state with multiple ways to proceed.
+	For example, say that we are in state q(1) in NFA N(1) and that the next input symbol is a 1. After reading that symbol, the machine splits into multiple copies of itself and follows all the possiblities in parallel. Each copy of the machine takes one of the possible ways to proceed and continues as before. If there are subsequent choices, the machine splits again. If the next input symbol doesn't appear on any of the arrows exiting the state occupied by a copy of the machine, that copy of the machine dies, along with the branch of the computation associated with it. Finally, if any one of these copies of the machine is in an accept state at the end of the input, the NFA accepts the input string.
+	If a state with an ε symbol on an siting arrow is encountered, something similar happens.Without reading any input, the machine splits into multiple copies, one following each of the exiting ε-labeled arrows and one staying at the current state. Then the machine proceeds nondeterministically as before.
+	Nondeterminism may be viewed as a kind of parallel computation wherein multiple independent "processes" or "threads" can be running concurrently.
+	When the NFA splits to follow several choices, that corresponds to a process "forking" into several children, each proceeding separately. If at least one of these processes accpets, then the entire computation accepts.
+	Another way to think of a nondeterministic computation is as a tree of possibilities. The root of the tree corresponds to a start of the computation. Every branching point in the tree corresponds to a point in the computation at which the machine has multiple choices. The machine accepts if at least one of the computation branches ends in an accept state.
+
+
+
+Regular Expressions
+
+	We use the regular operations to build up expressions describing languages, which are called regular expressions.
+
+		ex. (0 U 1)0*.
+
+	The value of a regular expression is a language. In this case, the value is the language consisting of all strings starting with a 0 or a 1 followed by any number of 0s.
+
+	We get this result by dissecting the expression into its parts.
+	First, the symbols 0 and 1 are shorthand for the sets {0} and {1}. So (0U1)
+	means ({0}U{1}).The value of this part is the language {0,1}. The part 0* means {0}*, and its value is the language consisting of all strings containing any number of 0s.
+	Second, like the x symbol in algebra, the concatenation symbol o often is implicit in regular expressions.
+	Thus (0U1)0* actually is shorthand for (0U1)o0*. The concatenation attaches the strings from the two parts to obtain the value of the entire expression.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

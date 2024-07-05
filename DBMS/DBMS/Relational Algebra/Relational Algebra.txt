@@ -1,0 +1,32 @@
+---------------------------------------------------------------------------------------------
+It used in procedural query language. 
+
+It collects instances of relations as input and gives occurrencesof relations as output.
+
+SQL Relational algebra query operations are performed recursively on a relation.
+
+
+The output of these operations is a new relation, 
+	which might be formed from one or more input relations.
+---------------------------------------------------------------------------------------------
+
+*****************************************
+Basic SQL Relational Algebra Operations
+*****************************************
+-------------------------------------------------
+Unary Relational Operations
+	SELECT(symbol: σ)
+	PROJECT(symbol: π)
+	RENAME(symbol: ρ)
+
+Relational Algebra Operations From Set Theory
+	UNION(υ)
+	INTERSECTION(),
+	DIFFERENCE(-),
+	CARTESIAN PRODUCT( X )
+
+Binary Relational Operations
+	JOIN
+	DIVISION
+
+--------------------------------------------------

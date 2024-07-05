@@ -1,0 +1,42 @@
+*************
+SELECT (σ)
+*************
+------------------------------------------------------------------------------
+
+select operator selects tuples that satisfy a given predicate.
+
+ex. - σ topic = "Database" (Tutorials)
+
+	output - Selects tuples from Tutorials where topic="Database".
+
+ex. σ topic = "Database" and author = "guru99" (Tutorials)
+	
+	output - Selects tuples from Tutorials where the topic is "Database" and "author" is guru99.
+
+ex. σ sales > 50000 (Customers)
+
+	output - Selects tuples from Customers where sales is greater than 50000
+
+-------------------------------------------------------------------------------
+****************
+Projection (π)
+***************
+-------------------------------------------------------------------------------------------
+
+The projection eliminates all attributes of the input relation but those mentioned in the projection list.
+
+The projection method defines a relation that contains a vertical subset of Relation.
+
+So basically this Operator used to fetch specific columns only from the table.
+
+-------------------------------------------------------------------------------------------
+
+*********
+Rename (ρ)
+*********
+----------------------------------------------------------------------
+Rename is unary operation used for renaming attributes of a relation.
+
+ρ (a/b)R will rename the attribute ‘b’ of relation by ‘a’.
+
+-----------------------------------------------------------------------

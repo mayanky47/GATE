@@ -1,0 +1,28 @@
+****************
+Theta Join (θ)
+****************
+---------------------------------------------------------------
+The general case of JOIN operation is called a Theta join.
+
+A ⋈θ B
+
+A ⋈ (A.column 2 >  B.column 2) (B)
+---------------------------------------------------------------
+***********
+EQUI Join
+***********
+----------------------------------------------------------------------------------------------
+When a theta join uses only equivalence condition, it becomes a equi join.
+
+A ⋈ A.column 2 =  B.column 2 (B)
+
+EQUI join is the most difficult operations to implement efficiently using SQL in an RDBMS and one reason why RDBMS have essential performance problems.
+----------------------------------------------------------------------------------------------
+*************
+Natural Join
+*************
+--------------------------------------------------------------------------------------
+
+Natural join can only be perform if there is a common attribute btw the relations.
+
+--------------------------------------------------------------------------------------

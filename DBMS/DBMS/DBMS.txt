@@ -1,0 +1,72 @@
+----------------------------
+a collection of programs that manages the database structure and controls access to the data stored in the database.
+------------------------------
+***************
+Advantages
+****************
+-----------------------------------------------------------------------
+the DBMS enables the data in the database to be shared among multiple applications or users.
+
+DBMS integrates the many different user's views of data into a single all-encompassing data repository.
+
+Improved data sharing
+
+Improved data security
+
+Better data integration
+
+Minimized data inconsistency
+
+Improved data access
+
+Improved decision making
+
+Increased end-user productivity
+--------------------------------------------------------------------------
+
+********************
+Types of Databases
+********************
+-------------------------
+based on the number of users.
+	single-user database
+	multiuser database
+	workgroup database
+	enterprise database
+
+based on the location
+	centralized database
+	distributed database
+
+based on how they will be used.
+	operational database ( sometimes reffered to as transactional or production database)
+	data warehouse
+
+based on the degree to which the data are structured.
+	Unstructured data
+	structured data
+	semistructured data
+
+--------------------------------
+********************
+Database design
+********************
+-------------------------------------------------------------------------------
+refers to the activities that focus on the design of the database structure that will be used to store and manage end-user data.
+
+---------------------------------------------------------------------------------
+
+*************************
+Files and File Systems
+*************************
+----------------------------------------------------------------------------------
+basic File Terminology
+	Data - Raw facts, such as telephone number, a birthd date
+	Field - A character or group of characters that has specific meaning. A field is used to
+	 	define and store data.
+	Record - A logically connected set of one or more fields that descirbe a person,place,
+		or thing.
+	File - A collection of related records.
+
+---------------------------------------------------------------------------------
+

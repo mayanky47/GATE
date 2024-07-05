@@ -1,0 +1,10 @@
+The Central Concepts of Automata Theory
+
+	ALPHABETS
+		an alphabet is a finite, nonempty set of symbols.
+
+	STRING
+		A string is a finite sequence of symbols chosen from some alphabet.
+
+	LANGUAGES
+		A set of strings all of which are chosen from some ALPHABET.

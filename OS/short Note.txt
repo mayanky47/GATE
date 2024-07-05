@@ -1,0 +1,10 @@
+
+
+PROCESS
+
+	Process state
+		New
+		Ready
+		Running
+		Waiting
+		Terminated

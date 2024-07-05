@@ -300,4 +300,74 @@ CANONICAL AND STANDARD FORMS
 			The procedure for obtaining the product of mexterms directly from the truth table is as follows. 
 				Form a maxterm for each combination of the variables that produces a 0 in the function, and then form the AND of all those maxterms. Boolean functions expressed as a sum of minterms or product of maxterms are said to be in CANONICAL form.
 
-	Page no. 61
+	Sum of Minterms
+
+	It was previously stated that for n binary variables, one can obtain 2^n distinct minterms, and that any Boolean function can be expressed as a sum of minterms.
+	The minterms whose sum defines the Boolean function are those that give the 1's of the function in a truth table. Since the function can be either 1 or 0 for each minterm, and since there are 2^n minterms, one can calculate the possible functions that can be formed with n variables to be 2^2^n. It is sometimes convenient to express the Boolean function in its sum of minterms form. If not in this form, it can be made so by first expanding the expression into a sum of AND terms. Each term is then inspected to see if it contains all the variables. If it misses one or more variables, it is ANDed with an expression such as x + x', where x is one of the missing variables. 
+
+	Product of Maxterms
+
+	Each of the 2^2^n functions of n binary variables can be also expressed as a product of maxterms. To express the Boolean function as a product of maxterms, it must be brought into a form of OR terms. This may be done by using the distributive law, x + yz = (x+y)(x+z). The any missing variable x in each OR term is ORed with xx'.
+
+	This procedure is clarified by the following example.
+
+	Expess the Boolean function F = xy+x'z in product of maxterm form. First, convert the function into OR terms using the distributive law.
+		F = xy + x'z = (xy + x')(xy + z)
+		  = (x + x')(y+x')(x + z)(y + z)
+		  = (x'+y)(x+z)(y+z)
+		The function has three variables: x,y, and z. Each OR term is missing one variable:
+		therefore:
+			x'+y = x'+z+zz'= (x'+y+z)(x'+y+z')
+			x+z=x+z+yy'=(x+y+z)(x'+y+z)
+		Combining all the terms and removing those that appear more than once, we finally obtain:
+			F = (x+y+z)(x+y'+z)(x'+y+z)(x'+y+z')
+			  = M(0)M(2)M(4)M(5)
+
+		A convenient way to express this function is as follows:
+			F(x,y,z) = Π(0,2,4,5)
+		The product symbol,Π, denotes and ANDing of maxterms, the numbers are the maxterms of the function.
+
+	Conversion between Canonical Forms
+
+	The complement of a function expressed as the sum of minterms equals the sum of minterms missing from the original function. This is because the original function is expressed by those minterms that make the function equal to 1, whereas its complement is a 1 for those minterms that the function is a 0. 
+
+	Example, consider the function 
+		F(A,B,C) = ∑(1,4,5,6,7)
+
+	This has a complement that can be expressed as
+		F'(A,B,C) = ∑(0,2,3) = m(0)+m(2)+m(3)
+
+	Now, if we take the complement of F' by DeMorgan's theorem, we obtain F in different form:
+		F = (m(0)+m(2)+m(3))' = m(0)'.m(2)'.m(3)'= M(0)M(2)M(3) = Π(0,2,3)
+	The last conversion follows from the definition of minterms and maxterms.
+	It is clean that the following relation holds true:
+		m(j)' =M(j)
+
+	That is, the maxterm with subscript j is a complement of the minterm with the same subscript j, and vice versa.
+
+	The total number of minterms or maxterms is 2^n, where n is the number of binary variables in the function.
+
+	Standard Forms
+
+	In the standard form, the terms that form the function may contain one, two, or any number of literals.
+	there are two types of standard forms: the sum of products and and product of sums.
+
+	The sum of products is a Boolean expression containing AND terms, called product terms, of one or more literals each. The sum denotes the ORing of these terms.
+		Ex. F1 =y'+xy+x'yz'
+
+		The expression has three product terms of one, two, and three literals each, respectively. Their sums is in effect an OR operation.
+
+	A product of sums is a Boolean expression containing OR terms, called sum terms.
+	Each term may have any number of literals. The product denotes the ANDing of these terms.
+		Ex. F2 = x(y'+z)(x'+y+z'+w)
+
+		This expression has three sum terms of one, two, and four literals each, respectively.
+		The product is an AND operation. The use of the words product and sum stems from the similarity of the AND operation to the arithmetic product(multiplication) and similarity of the OR operation to the arithmetic sum (addition).
+
+	A Boolean function may be expressed in a nonstandard form.
+		Ex. F = (AB+CD)(A'B'+C'D')
+		is neither in sum of products nor in product of sums.
+		it can be changed to a standard form by using the distributive law to remove the parantheses:
+			F = ABC'D' + A'B'CD
+
+	PAGE 77

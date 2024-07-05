@@ -1,0 +1,109 @@
+Complexity Theory
+	The object is to classify problems as easy ones and hard ones.
+Computability Theory
+	The classification of problem is by those that are solvable and those that are not.
+
+
+Automata Theory
+
+	Automata Theory deals with the definitions and properties of mathematical models of computation.
+
+	One Model Called the finite Automaton
+		is used in text processing, compilers, and hardware design.
+
+	Another Model called the Context-free grammer,
+		is used in programming languages and artificial intelligence.
+
+SET
+
+	A set is a group of objects represented as a unit.
+
+		A object in a set are called its elements or members.
+
+Sequence and Tuples
+
+	A sequence of objects is a list of these objects in some order.
+		Repition also matters in sequence 
+		written as (1,25,6)
+
+	Finite sequences called Tuples
+
+	A sequence with k elements is k-tuple.
+		A 2-tuple is also called an ordered pair.
+
+Function
+	Function is an object that sets up an input-output relationship.
+
+		F(a) = b
+			where a is input and b is output
+
+	Domain
+		The set of possible input to the function is called its domain.
+
+	Range
+		The outputs of a function come from a set called its range.
+
+	The notation for saying that F is a function with domain D and range R is
+		F:D->R
+
+	A predicate or property is a function whose range is { TRUE, FALSE}.
+
+	A property whose domain is a set of k-tuple is called a relation, a k-ary relation on A.
+
+	The predicate P:D->{TRUE,FALSE} may be written (D,S), where S = {a ∈ D| P(a)=TRUE}
+		The relation beats may be written 
+		  {(SCISSORS, PAPER),(PAPER, STONE),(STONE,SCISSORS)}.
+
+
+GRAPHS
+	
+	An undirected graph, or simply a graph, is a set of points with lines connecting some of the points. the points are called nodes or vertices, and the lines are called edges.
+
+	The number of edges at a perticular node is the degree of that node.
+
+	If V is the set of nodes of G and E is the set of edges, we say G = (V, E) 
+
+Strings
+
+	A string over an alphabet is a finite sequence of symbols from that alphabet, usually written next to one another and not separated by commas.
+
+	An alphabet is a nonempty finite set.
+	The members are the symbols of the alphabet.
+		Example of alphabets.
+			Σ(2) = {a,b,c,d,e,f,g,h,i,j,k,l,m,n,...,z}
+			Γ = {0,1,x,y,z}
+
+	String x is a prefix of string y if a string z exists where xz = y
+	and x is a proper prefix of y if in addition x ̸= y .
+
+	A language is prefix-free if no member is a proper prefix of another member.
+
+Types of Proof
+
+	Proof by construction
+	Proof by Contradiction
+	Proof by Induction
+
+Finite Automata
+
+	Finite automata are good models for computers with extremely limited amount of memory.
+
+	Formal definition
+
+	A finite automaton is a 5-tuple (Q,Σ,δ,q(0),F), where
+		1. Q is a finite set called the states,
+		2. Σ is a finite set called the alphabet,
+		3. δ:QxΣ->Q is the transition function,
+		4. q(0)∈Q is the start state, and
+		5. F⊆Q is the set of accept states.(accept states sometimes are called final states.)
+
+	If A is the set of all strings that machine M accepts, we say that A is the language of machine M and write L(M) = A
+
+	We say that M recognizes A or that M accepts A.
+
+	A machine always recognizes only one language.
+
+	A language is called a regular language if some finite automaton recognizes it.
+
+
+

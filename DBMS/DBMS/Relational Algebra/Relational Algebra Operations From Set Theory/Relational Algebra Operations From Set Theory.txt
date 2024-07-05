@@ -1,0 +1,49 @@
+*********************
+Union operation (υ)
+*********************
+--------------------------------------------------------
+It includes all tuples that are in tables A or in B.
+
+It also eliminates duplicate tuples.
+
+So set A UNION set B would be expressed as:
+	
+	A ∪ B
+
+For a union operation to be valid, the following conditions must hold -
+	R and S must be the same number of attributes.
+	Attribute domains need to be compatible.
+	Duplicate tuples should be automatically removed.
+
+--------------------------------------------------------
+
+********************
+Set Difference(-)
+********************
+------------------------------------------------------------------------------------
+The result of A - B, is a relation which includes all tuples that are in A but not in B.
+
+	The attribute name of A has to match with the attribute name in B.
+	The two-operand relations A and B should be either compatible or Union compatible.
+	it should be defined relation consisting of the tuples that are in relation A, but in B.
+
+-------------------------------------------------------------------------------------
+****************
+Intersection (∩)
+****************
+------------------------------------------------------------------------------------------------
+
+A ∩ B Defines a relation consisting of a set of all tuples that are in both A and B. However, A and B must be union-compatible.
+
+------------------------------------------------------------------------------------------------
+*********************
+Cartesian Product(X)
+*********************
+------------------------------------------------
+it is uesd to merge columns from two relations.
+
+Generally, a cartesian product is never a meaningful operation when it perform alone. 
+However, it becomes meaningful when it is followed by other operations. 
+
+It is called Cross product or Cross join.
+-----------------------------------------------

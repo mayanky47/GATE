@@ -1,0 +1,65 @@
+THE ROLE OF ALGORITHMS IN COMPUTING
+
+	Algorithms
+
+	Informally, an algorithm is any well-defined computational procedure that takes some value, or set of values, as input and produces some value, or set of values, as output.
+	An algorithm is thus a sequence of computational steps that transform the input into output.
+
+	We can also view an algorithm as a tool for solving a well-specified computational problem.
+	The statement of the problem specifies in general terms the desired input/output relationship.
+	The algorithm describes a specific computational procedure for achieving that input/output relationship.
+	Ex. 
+		We might need to sort a sequence of numbers into nondecreasing order.
+		This problem arises frequently in practice and provides fertile ground for introducing many standard design techniques and analysis tools.
+		Here is how we formally define the sorting problem.
+
+		Input: A sequence of n numbers (a(1),a(2),...,a(n)).
+		Output: A permutation (reordering) (a'(1),a'(2),...,a'(n)) of the input sequence such that a'(1) <= a'(2) <=...<=a'(n).
+
+		For Ex., given the input sequence (31,41,59,26,41,58), a sorting algorithm returns as output the sequence (26,31,41,58,59).
+		Such an input sequence is called an instance of the sorting problem. 
+		In general, an instance of a problem consists of the input (satisfying whatever constraints are imposed in the problem statement) needed to compute a solution to the problem.
+
+	An algorithm is said to be correct if, for every input instance, it halts with the correct output. 
+	We say that a correct algorithm solves the given computational problem.
+	An incorrect algorithm mihgt not halt at all on some input instances, or it might halt with an incorrect answer.
+	Contrary to what you might expect, incorrect algorithms can sometimes be useful, if we an control their error rate.
+	Ordinarily, however, we shall be concerned only with correct algorithms.
+
+	An algorithm can be specified in English, as a computer program, or even as a hardware design.
+
+	The only requirement is that the specification must provide a precise description of the computational procedure to be followed.
+
+	What kinds of problems are solved by algorithms?
+
+	Sorting is by no means the only computational problem for which algorithms have been developed.
+	Practical applications of algorithms are ubiquitous and include the following examples.
+
+		The Human Genome Project has made great progress toward the goals of identifying all the 100,000 genes in human DNA, determining the sequences of the 3 billion chemical base pairs that make up human DNA, storing this information in databases, and developing tools for data analyssis. Each of these steps requires sophisticated algorithms.
+		The inernet enables people all around the world to quickly access and retrieve large amounts of information, with the aid of clever algorithms, sites on the internet are able to manage and manipulate this large volume of data.
+		Examples of problems that make essential use of algorithms include finding good routes on which the data will travel, and using a search engine to quickly find pages on which particular information resides.
+		Electronic commerce enables goods and services to be negotiated and exchanged electronically, and it depends on the privacy of personal information such as credit card numbers, passwords, and bank statements. The core technologies used in electronic commerce include public-key cryptography and digital signatures, which are based on numerical algorithms and nubmer theory.
+		Manufacturing and other commercial enterprises often need to allocate scarce resources in the most beneficial way. An oil company may wish to know where to palce its wells in order to maximize its expected profit. A political candidate may want to determine where to spend money buying campaign advertising in order to maximize the chances of winning an election. An airline may wish to assign crews to flights in the least expensive way possible, making sure that each flight is covered and that government regulations regarding crew scheduling are met. An internet service provider may wish to determine where to place additional resources in order to serve its customers more effectively. All of these are examples of problems that can be solved using linear programming.
+	Although some of the details of these examples are beyond the scope of this book, we do give underlying techniques that apply to these problems and problem areas. We also show how to solve many specific problems, including the following:
+
+		We are given a road map on which the distance between each pair of adjacent intersections is marked, and we wish to determine the shortest route from one intersection to another. The number of possible routes can be huge, even if we disallow routes that cross over themselves. How do we choose which of all possible routes is the shortest? Here, we model the road map (which is itself a model of the actual roads) as a graph, and we wish to find the shortest path from one vertex to another in the graph.
+
+		We are given two ordered sequences of symbols, X = (x1,x2,...,xm) and Y = (y1,y2,...,yn), and we wish to find a longest common subsequence of X and Y. A subsequence of X is just X with some (or possibly all or none) of its elements removed.
+			Ex. one subsequence of (A,B,C,D,E,F,G) would be (B,C,E,G). The length of a longest common subsequence of X and Y gives one measure of how similar these two sequences are.
+			For example, if the two sequences are base pairs in DNA strands, then e might consider them similar if they have a long common subsequence. If X has m symbols and Y has n symbols, then X and Y have 2^m and 2^n possible subsequences, respectively. Selecting all possible subsequences of X and Y and matching them up could take a prohibitively long time unless m and n are very small.
+		We are given a mechanical design in terms of a library of parts, where each part may include instances of other parts, and we need to list the parts in order so that each part appears before any part that uses it. If the design comprises n parts, then there are n! possible orders, where n! denotes the factorial function. Because the factorial function grows faster than even exponential function, we cannot feasibly generate each possible order and then verify that, within that order, each part appears before the parts using it (unless we have only a few parts). This problem is an instance of topological sorting.
+		We are given n points in the plane, and we wish to find the convex hull of thse points. The convex hull is the smallest convex polygon containig the points. The convex hull is the smallest convex polygon containing the points. Intuitively, we think of each point as being represented by a nail sticking out from a board. The convex hull would be represented by a tight rubber band that surrounds all the nails. Each nail around which the rubber band makes a turn is a vertex of the convex hull. Any of the 2^n subsets of the points might be the vertices of the convex hull. Knowing which points are vertices of the convex hull is not quite enough, either, since we also need to know the order in which they appear. There are many choices, therefore, for the vertices of the convex hull.
+	These lists are far from exhaustive but exhibit two characterstics that are common to many interesting algorithmic problems.
+
+	1. They have many candidate solutions, the overwhelming majority of which do not solve the problem at hand. Finding one that does, or one that is "best," can present quite a challenge.
+
+	2. They have practical applications. Of the problems in the above list, finding the shortest path provides the easiest examples. A transportation firm, such as a trucking or railroad company, has a financial interest in finding shortest paths through a road or rail network because taking shorter paths results in lower labor and fuel costs. Or a routing node on the internet may need to find the shortest path through the network in order to route a message quickly. Or a person wishing to drive from New York to Boston may want to find driving directions from an appropriate Web site, or she may use her GPS whiel driving. Not every problem solved by algorithms has an easily identified set of candidate solutions. For example, suppose we are given a set of numerical values representing samples of a signal, and we want to compute the discrete Fourier transform of these samples. The discrete Fourier transform converts the time domian to the frequency domain, producing a set of numerical coeffients, so that we can determine the strength of various frequencies in the sampled signal. In addition to lying at the heart of signal processing, discrete Fourier transforms have applications in data compression and multiplying large polynomials and integers.
+
+	Data structures
+
+	A data structure is a way to store and organize data in order to facilitate access and modifications. No single data structure works well for all purposes, and so it is important to know the strengths and limitations of several of them.
+
+	Technique
+
+
+

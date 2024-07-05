@@ -1,0 +1,17 @@
+****************
+Join Operations (⋈)
+****************
+------------------------------------------------------------------------------------
+Join operation is essentially a cartesian product followed by a selection criteria.
+
+Types of JOIN:
+	Inner join
+	Outer join
+
+------------------------------------------------------------------------------------
+**********
+DIVISION
+**********
+------------
+
+--------------
