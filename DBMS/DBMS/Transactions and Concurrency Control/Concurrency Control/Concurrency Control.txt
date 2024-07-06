@@ -1,0 +1,57 @@
+----------------------------------------------
+
+The Coordination of the simultaneous execution of transactions in a multiuser database system is known as concurrency control.
+
+The objective of concurrency control is to ensure the serializability of transactions in a multiuser database environment.
+----------------------------------------------
+************************
+The three main problems
+************************
+----------------------------
+LOST UPDATES
+Uncommitted data
+Inconsistent retrievals
+----------------------------
+*******************
+The Scheduler
+*******************
+------------------------------------------------------------------------------------------
+The scheduler is a special DBMS process that establishes the order in which the operations within concurrent transactions are executed.
+------------------------------------------------------------------------------------------
+******************************************
+Concurrency Control with Locking Methods
+******************************************
+-----------------------------------------------------------------------------
+A lock guarantees exclusive use of a data item to a concurrent transaction.
+
+All lock information is managed by a lock manager, which is responsible for assigning and policing the locks used by the transactions.
+
+Lock granularity
+Lock Types
+Two-Phase locking to Ensure Serializability
+Deadlocks
+-----------------------------------------------------------------------------
+**************************************************
+Concurrency Control with Time Stamping methods
+**************************************************
+--------------------------------------------------------------------------------
+The time stamping approach to scheduling concurrent transactions assigns a global, unique time stamp to each transaction.
+
+Wait/Die scheme
+Wound/Wait schemes
+
+-----------------------------------------------------------------------------
+***************************************************
+Concurrency Control with Optimistic methods
+***************************************************
+----------------------------------------
+The optimistic approach is based on the assumption that the majority of the database operations do not conflict.
+----------------------------------------
+******************************
+Database Recovery Management
+******************************
+--------------------------------------------------------------------------------
+Database recovery restores a database from a given state(usually inconsistent) to a previously consistent state.
+
+Transaction Recovery
+--------------------------------------------------------------------------------

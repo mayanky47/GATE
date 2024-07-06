@@ -1,0 +1,45 @@
+----------------------------------------------------------------------------------------------
+
+A transaction is a logical unit of work that must be entirely completed or entirely aborted,
+	no intermediate states are accptable.
+
+A successful transaction changes the database from one consistent state to another.
+	A consistent database state is one in which all data integrity constrains are satisfied.
+----------------------------------------------------------------------------------------------
+********************************
+Evaluating Transaction Results
+********************************
+----------------------------
+Not all transactions update the database.
+
+transaction may consist of a single SQL statement or a collection of related SQL Statement.
+
+-----------------------------
+************************
+Transaction Properties
+************************
+---------------------------------------------------
+Each individual transaction must display (ACID)
+	Atomicity
+	consistency
+	isolation
+	durability
+
+	Serializability
+----------------------------------------------------
+********************************
+Transaction Management With SQL
+********************************
+----------------------------------------------------------------------------------------------
+The American National Standards Institute(ANSI) defined that govern SQL database transactions.
+
+Transaction support is provided by two SQL statements:
+	COMMIT
+	ROLLBACK
+----------------------------------------------------------------------------------------------
+****************
+Transaction Log
+****************
+--------------------------------------------------------------------------------------------
+A DBMS uses a transaction log keep track of all the transactions that update the database.
+--------------------------------------------------------------------------------------------

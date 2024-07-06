@@ -1,0 +1,207 @@
+Preface
+	
+	The Systems View
+		The book's title begins with Database Systems.
+
+		Therefore, we examine the database and design concept covered in Chapters 1-6 as part of a larger whole by placing them within the systems analysis framework of Chapter 9.
+
+		We believe that database designers who fail to understand that the database is part of a larger system are likely to overlook important database design requirements.
+
+		In fact, Chapter 9, Database Design, provides the map for the advanced database design developed in Appendixes B and C.
+
+		Within the larger systems framework, we can also explore issues such as transaction management and concurrency control (Chapter 10), distributed database management systems (Chapter 12), business intelligence and data warehouses (Chapter 13), database connectivity and Web technologies (Chapter 14), and database administration and security (Chapter 15).
+
+	Database Design
+
+		The first item in the book's subtitle is Design, and our examination of database design is comprehensive.
+
+		For example, Chapter 1 and 2 examine the development of databases and data models and illustrate the need for design.
+
+		Chapter 3 examines the details of the relational database model;
+
+		Chapter 4 provides extensive, in-depth, and practical database design coverage;
+
+		and Chapter 5 is devoted to critical normalization issues that effect database efficiency and effectiveness.
+
+		Chapter 6 explores advanced database design topics.
+
+		Chapter 7 and 8 examine database implementation issues and how the data are accessed through Structured Query Language (SQL).
+
+		Chapter 9 examines database design within the systems framework and maps the activities required to successfully design and implement the complex real-world database developed in Appendixes B and C.
+
+		Because database is affected by real-world transactions, the way data are distributed, and ever-increasing information requirements, we examine major database features that must be supported in current-generation databases and models.
+
+		For example, Chapter 10, Transaction Management and Concurrency Control, focues on the characteristics of database transactions adn how they affect database integrity and consistency.
+
+		Chapter 11, Database Performance Tuning and Query Optimization, illustrates the need for query efficiency in a real world that routinely generates and uses terabyte-sized databases and tables with millions of records.
+
+		Chapter 12, Distributed Database Management Systems, focuses on data distribution, replication, adn allocation.
+
+		In Chapter 13, Business Intelligence and Data Warehouses, we explore the characteristics of the databases that are used in decision support and online analytical processing.
+
+		Chapter 14, Database Connectivity issues encountered in a Web-based data world, and it shows the development of Web-based database front ends.
+
+	Implementation
+
+		The second portion of the subtitle is Implementation.
+
+		We use Structured Query Language (SQL) in Chapters 7 and 8 to show how databases are implemented and managed.
+
+		Appendixes B and C demonstrate the design of a database that was fully implemented and they illustrate a wide range of implementation issues.
+
+		We had to deal with conflicting design goals: design elegance, information requirements, and operational speed.
+
+		Therefore, we carefully audited the initial design(Appendix B) to check its ability to meet end-user needs and to establish appropriate implementation protocols.
+
+		The result of this audit yielded the final, implementable design developed in Appendix C.
+
+		The Special issues encountered in an Internet database environment are addressed in Chapter 14, Database Connectivity and Web Technologies, and in Appendix J, Web Database Development with ColdFusion.
+
+	Management
+
+		The final portion of the subtitle is Management.
+
+		We deal with database management issues in Chapter 10, Transaction Management and Concurrency Control;
+
+		Chapter 12, Distributed Database Management Systems;
+
+		and Chapter 15, Database Administration and Security.
+
+		Chapter 11, Database Performance Tuning and Query Optimization, is a valuable resource that illustrates how a DBMS manages the data retrieval operations.
+
+
+	TEACHING DATABASE: A MATTER OF FOCUS
+
+		Given the wealth of detailed coverage, instructors can "mix and match" chapters to produce the desired coverage.
+
+		Depending on where database courses fit into the curriculum, instructors may choose to emphasize database design or database management.
+
+		The hands-on nature of database design lends itself particularly well to class projects for which students use instructor-selected software to prototype a student-designed system for the end user.
+
+		Several of the end-of-chapter problems are sufficiently complex to serve as projects, or an instructor may work with local business to give students hands-on experience.
+
+		Note that some elements of the database design track are also found in the database management track.
+
+		This is because it is difficult to manage database technologies that are not understood.
+
+
+
+
+PART 1
+
+	DATABASE CONCEPTS
+
+	The RELATIONAL REVOLUTION
+
+	Today, we take for granted the benefits brough to us by relational databases:
+
+	the ability to store, access, and change data quickly and easily on low-cost computers.
+
+	Yet, until the late 1970s, databases stored large amounts of data in a hierarchical structure that was difficult to navigate and inflexible.
+
+	Programmers needed to know what clients wanted to do with the data before the database was designed.
+
+	Adding or changing the way the data was analyzed was a time-consuming and expensive process.
+
+	As a result, you searched through huge card catalogs to find a library book, you used road maps that didn't show changes made in the last year, and you had to buy a newspaper to find information on stock prices.
+
+	In 1970, Edgar "Ted" Codd, a mathematician employed by IBM, wrote an article that would change all that.
+
+	At the time, nobody realized that Codd's obscure theories would spark a technological revolution on par with the development of personal computers and internet. 
+
+	Don Chamberlin, coinventor of SQL, the most popular computer language used by database systems today, explains, "There was this guy Ted Codd who had some kind of strange mathematical notation, but nobody took it very seriously." Then Ted Codd organized a symposium, and Chamberlin listened as Codd reduced complicated five-page programs to one line. "And I said, 'Wow'" Chamberlin recalls.
+
+	The symposium convinced IBM to fund System R, a research project that build a prototype of a relational database and that would eventually lead to the creation of SQL and DB2. IBM, however, kept System R on the back burner for a number of crucial years.
+
+	The company had a vested interest in IMS, a reliable, high-end database system that had come out in 1968.
+
+	Unaware of the market potential of this research, IBM allowed its staff to publish these papers publicly.
+
+	Among those reading these papers was Larry Ellison, who had just founded a small company.
+
+	Recruiting programmers from System R and University of California, Ellison was able to market the first SQL-based relational database in 1979, well before IBM.
+
+	By 1983, the company had released a portable version of the database, grossed over $5,000,000 annually and changed its name to Oracle.
+
+	Spurred on by competition, IBM finally released SQL/DS, its first relational database, n 1980.
+
+	By 2007, global sales of database management systems topped $15 billion with Oracle capturing roughly half of the market share and IBM trailing at under a quarter.
+
+	Microsoft's SQL Server market share grew faster than its competitors, climbing to 14%.
+
+
+	DATABASE SYSTEMS
+
+	Good decisions require good information that is derived from raw facts.
+
+	These raw facts are known as data.
+
+	Data are likely to be managed most efficiently when they are stored in a database.
+
+	In this chapter, you learn what a database is, what it does, and why it yields better result than other data management methods.
+
+	You also learn about various types of databases and why database design is so important.
+
+	Databases evolved from computer file systems.
+
+	Although file system data management is now largely outmoded, understanding the characteristics of file systems is important because file systems are the source of serious data management limitations.
+
+	In this chapter, you also learn how the database system approach helps eliminte most of the shortcomings of file system data management.
+
+
+	1.1 DATA VS. INFORMATION
+
+	To understand what drives database design, you must understand the difference between data and information.
+
+	Data are raw facts.
+
+	The word raw indicates that the facts have not yet been processed to reveal their meaning.
+
+	Information is the result of processing raw data to reveal its meaning.
+
+	Data processing can be as simple as organizing data to reveal patterns or as complex as making forecasts or drawing inferences using statical modeling.
+
+	To reveal meaning, information requires context.
+
+	For example, an average temperature reading of 105 degrees does not mean much unless you also know its context.
+
+	For example, an average temperature reading of 105 degrees does not mean much unless you also know its context.
+		Is this in degrees Fahrenheit or Celsius? Is this a machine temperature, a body temperature, or an outside air temperature?
+
+	Information can be used as the foundation for decision making.
+
+	For example, the data summary for each question on the survey form can point out the lab's strength and weaknesses, helping you to make informed decisions to better meet the needs of lab customers.
+
+	Keep in mind that raw data must be properly formatted for storage, processing, and presentation.
+
+	In this "information age," production of accurate, relevant, and timely information is the key to good decision making.
+
+	In turn, good decision making is the key to business survival in a global market.
+
+	We are now said to be entering the "knowledge age."
+
+	Data are the foundation of information, which is the bedrock of knowledge- that is, the body of information as it applies to an environment.
+
+	A key characteristic of knowledge is that "new" knowledge can be derived from "old" knowledge.
+
+	Let's summarize some key points:
+		Data constitute the building blocks of information.
+		Information is produced by processing data.
+		Information si used to reveal the meaning of data.
+		Accurate, relevant, and timely information is the key to good decision making.
+		Good decision making is the key to organiztional survival in a global environment.
+
+
+	Timely and useful information requires accurate data.
+
+	Such data must be generated properly, and it must be stored in a format that is easy to access and process.
+
+	And, like any basic resource, the data environment must be managed carefully.
+
+	Data management is a discipline that focuses on the proper generation, storage, and retrieval of data.
+
+	Given the crucial role that data plays, it should not surprise you that data management is a core activity for any business, government agency, service organization, or charity.
+
+
+
+	

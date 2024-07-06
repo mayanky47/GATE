@@ -1,0 +1,21 @@
+*************
+Transaction
+*************
+---------------------------------------------------------------------------------------
+Database transactions reflect real-world transactions that are triggered by events such as buying a product, registering for a course, or making a deposit in a checking account.
+
+Database transaction properties
+	Atomicity
+	consistency
+	isolation
+	durability
+------------------------------
+*************************
+Concurrent Control
+*************************
+----------------------------
+When many transactions take place at the same time, they are called concurrent transactions.
+
+Managing the execution of such transactions is called concurrency control.
+
+---------------------------------------------------
